@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
-VisualStudioVersion = 16.0.29609.76
+VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memcomb", "Memcomb.csproj", "{E405B0E1-528A-4FE4-86A4-B5E4CAC4E1D4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Memcomb", "Memcomb\Memcomb.csproj", "{CBF96DD3-71BC-4556-B16F-64ADC5D5A751}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,15 +11,15 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E405B0E1-528A-4FE4-86A4-B5E4CAC4E1D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E405B0E1-528A-4FE4-86A4-B5E4CAC4E1D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E405B0E1-528A-4FE4-86A4-B5E4CAC4E1D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E405B0E1-528A-4FE4-86A4-B5E4CAC4E1D4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBF96DD3-71BC-4556-B16F-64ADC5D5A751}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBF96DD3-71BC-4556-B16F-64ADC5D5A751}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBF96DD3-71BC-4556-B16F-64ADC5D5A751}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBF96DD3-71BC-4556-B16F-64ADC5D5A751}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E51005D3-F68C-42D0-A74F-509D761318C9}
+		SolutionGuid = {9969EBAE-3766-4194-AE99-319EEE70C9C5}
 	EndGlobalSection
 EndGlobal
