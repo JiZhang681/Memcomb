@@ -1,0 +1,32 @@
+﻿@{
+    WebImage photo = null;
+    var newFileName = "";
+    var imagePath = "";
+    if (IsPost)
+    {
+        photo = WebImage.GetImageFromRequest();
+        if (photo != null) {
+            newFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(photo.FileName);
+            Path.GetFileName(photo.FileName);
+            imagePath = @"images\" + newFileName;
+            photo.Save(@"~\" + imagePath);
+        }
+    }
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>User Profile</title>
+    <h2>User's Name</h2>
+    <a href='@Url.Action("MyAction", "MyController")'>
+    <img src='@Url.Content("~/Content/Image/facebookdefaultprofile.jpg")'/>
+    </a>
+    <p>I am a user and this is my bio</p>
+</head>
+<body>
+    <div>
+    
+    </div>
+</body>
+</html>

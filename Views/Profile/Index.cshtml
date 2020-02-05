@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "Profile template";
+}
+    <link href="@Url.Content("~/Content/Profile.css") rel="stylesheet" type="text/css" />
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>User's Username</title>
+    <div>
+        <img src="@Url.Content("~/Content/Images/facebookdefaultprofile.jpg")" />
+    </div>
+    <h1>User's Name</h1>
+    <td>___________________________________________________</td>
+    <table>
+        <tr>
+            <td>
+               | Number of followers
+            </td>
+            <td>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+            </td>
+            <td>
+                Number of Memories
+            </td>
+            <td>
+                &nbsp;&nbsp;|&nbsp;&nbsp;
+            </td>
+            <td>
+                This is my bio |
+            </td>
+        </tr>
+    </table>
+    <td>___________________________________________________</td>
+    <br />    
+    <button>Edit Profile</button>
+    </head>
+    <body>
+        <div>
+            <button>Upload</button>
+        </div>
+    </body>
+</html>

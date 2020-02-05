@@ -1,0 +1,28 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+    <link href="@Url.Content("~/Content/LoginPage.css")" rel="stylesheet" type="text/css" />
+
+        <div class="neon-text">
+            MEMCOMB
+            <img src="~/Images/memcombLogo.png" class="img" />
+        </div>
+
+        <div>
+            <input class="inputFields" type="text" name="FirstName" placeholder="email@example.com"><br>
+            <input class="inputFields" type="text" name="LastName" placeholder="password"><br>
+            <div>
+                <a href=@Url.Action("Index","HomePage") class="logInBtn">
+                    Log In
+                </a>
+                <a href="@Url.Action("Create", "SignUps")" class="signUpBtn">
+                    Sign Up
+                </a>
+            </div>
+            <div>
+                <a href="@Url.Action("Create", "SignUps")">
+                    Forgot password?
+                </a>
+            </div>
+        </div>

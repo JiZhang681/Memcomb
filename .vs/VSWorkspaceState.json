@@ -1,0 +1,12 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\Memcomb"
+  ],
+<<<<<<< HEAD
+  "SelectedNode": "\\Memcomb\\Memcomb.sln",
+=======
+  "SelectedNode": "\\Memcomb\\App_Start",
+>>>>>>> 8585fd50991ed533c3a23e4eb5824edc9810e998
+  "PreviewInSolutionExplorer": false
+}
