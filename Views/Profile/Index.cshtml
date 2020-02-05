@@ -1,43 +1,95 @@
 ﻿@{
-    ViewBag.Title = "Profile template";
+	ViewBag.Title = "Profile";
 }
-    <link href="@Url.Content("~/Content/Profile.css") rel="stylesheet" type="text/css" />
-<!DOCTYPE html>
-<html>
+<link href="@Url.Content("~/Content/Profile.css")" rel="stylesheet" type="text/css" />
+
 <head>
-    <meta name="viewport" content="width=device-width" />
-    <title>User's Username</title>
-    <div>
-        <img src="@Url.Content("~/Content/Images/facebookdefaultprofile.jpg")" />
-    </div>
-    <h1>User's Name</h1>
-    <td>___________________________________________________</td>
-    <table>
-        <tr>
-            <td>
-               | Number of followers
-            </td>
-            <td>
-                &nbsp;&nbsp;|&nbsp;&nbsp;
-            </td>
-            <td>
-                Number of Memories
-            </td>
-            <td>
-                &nbsp;&nbsp;|&nbsp;&nbsp;
-            </td>
-            <td>
-                This is my bio |
-            </td>
-        </tr>
-    </table>
-    <td>___________________________________________________</td>
-    <br />    
-    <button>Edit Profile</button>
-    </head>
-    <body>
-        <div>
-            <button>Upload</button>
-        </div>
-    </body>
-</html>
+	<div class="head">
+		<div class="spaceBetween">
+			<img src="@Url.Content("~/Content/Images/facebookdefaultprofile.jpg")" />
+			Back ground Image
+			<div>
+				<a href="@Url.Action("Index","HomePage")" class="editProfileBtn">
+					Edit Profile
+				</a>
+			</div>
+		</div>
+		<diV>
+			<h1>User Name</h1>
+		</diV>
+		<div>
+			<p>Bio</p>
+		</div>
+	</div>
+	<div class="followerRow">
+		<table>
+			<tr>
+				<td>
+					| 100 following
+				</td>
+				<td>
+					&nbsp;&nbsp;|&nbsp;&nbsp;
+				</td>
+				<td>
+					100 followers
+				</td>
+				<td>
+					&nbsp;&nbsp;|&nbsp;&nbsp;
+				</td>
+				<td>
+					20 Memories |
+				</td>
+			</tr>
+		</table>
+	</div>
+</head>
+
+<body>
+	This is where posts will go
+</body>
+
+		<!---
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<meta name="viewport" content="width=device-width" />
+			<title>User's Username</title>
+			<div>
+				<img src="@Url.Content("~/Content/Images/facebookdefaultprofile.jpg")" />
+			</div>
+			<h1>User's Name</h1>
+			<td>___________________________________________________</td>
+			<table>
+				<tr>
+					<td>
+						| Number of followers
+					</td>
+					<!--
+					<td>
+						&nbsp;&nbsp;|&nbsp;&nbsp;
+					</td>
+					--
+					<td>
+						Number of Memories
+					</td>
+					<!--
+					<td>
+						&nbsp;&nbsp;|&nbsp;&nbsp;
+					</td>
+					--
+					<td>
+						This is my bio |
+					</td>
+				</tr>
+			</table>
+			<td>___________________________________________________</td>
+			<br />
+			<button>Edit Profile</button>
+			</head>
+			<body>
+				<div>
+					<button>Upload</button>
+				</div>
+			</body>
+		</html>
+		-->

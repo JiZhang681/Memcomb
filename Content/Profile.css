@@ -1,4 +1,49 @@
-﻿#imageUpload{
+﻿
+body {
+    text-align: center; /*Centers all input fields, buttons, and text on screen*/
+    display: flex;
+    justify-content: center;
+    background-color: #333300;
+    color: #ffffff;
+}
+
+.head {
+    font-size: 10pt;
+    font-weight: bold;
+    text-align: left;
+    color: #ffffff;
+}
+
+.spaceBetween{
+    display: flex;
+    justify-content: space-between;
+}
+
+.lines{
+    text-align: left;
+    color: #ffffff;
+}
+
+.editProfileBtn {
+    background-color: #ffffff;
+    border: 2px solid #FFFF3E;
+    color: black;
+    padding: 16px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+}
+
+.editProfileBtn:hover {
+    background-color: #FFFF3E;
+    color: #000000;
+}
+
+#imageUpload{
     display: none;
 }
 #profileImage{
@@ -7,12 +52,10 @@
 #paddingbetweenCols td {
     padding: 0 15px 0 0;
 }
-td{
+.followerRow{
     font-size: 10pt;
-    text-align: center;
-    color:#000000;
-    border-color: #000;
-    border-width: 0 0 1px 0;
-    border-style:solid;
+    font-weight: bold;
+    text-align: left;
+    color:#ffffff;
     width: 100%;
 }

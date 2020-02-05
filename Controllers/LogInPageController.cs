@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Memcomb.Controllers
 {
-	public class HomeController : Controller
+	public class LogInPageController : Controller
 	{
 
 		public ActionResult Submit()
