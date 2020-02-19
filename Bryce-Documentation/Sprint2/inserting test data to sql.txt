@@ -1,0 +1,1 @@
+INSERT INTO USER VALUES ('1', 'Bryce', 'Waters', 'turkeybob144@gmail.com','password', '1998-08-14', '7306772', NULL, 'My name is Bryce', NULL, NULL, NULL);
