@@ -1,15 +1,23 @@
 ﻿body {
-    display: flex;
-    background-color: #333300;
-    color: #ffffff;
+    text-align: center; /*Centers all input fields, buttons, and text on screen*/
+    justify-content: center;
+    background-image: linear-gradient( to right, rgba(113,18,3,0) 0%, rgba(113,18,3,0) 5%, rgba(113,18,3,1) 15%, rgba(113,18,3,1) 85%, rgba(113,18,3,0) 95%, rgba(113,18,3,0) 100% ),url('../Images/LogInPageBackground.png');
+    background-position: left,center;
+    background-repeat: initial,repeat;
+    background-attachment: fixed,fixed;
+    margin: 0;
+    color: #ffffff; /* Text Color */
 }
 
+/* Unused at the moment */
+/*
 .head {
     font-size: 10pt;
     font-weight: bold;
     text-align: left;
     color: #ffffff;
 }
+*/
 
 .switchLine {
     clear: both;
