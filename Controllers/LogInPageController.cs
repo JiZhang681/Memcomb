@@ -1,8 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 using System.Web.Mvc;
+using Memcomb.Models;
+using System.Net;
+using System.Web.Security;
 
 namespace Memcomb.Controllers
 {
@@ -20,7 +24,41 @@ namespace Memcomb.Controllers
 			return View();
 		}
 
-		public ActionResult About()
+        
+        //Registration POST action
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Index(/*[Bind(Exclude = "IsEmailVerified,ActivationCode")]*/ User user)
+        {
+            bool Status = false;
+            string message = "";
+            //
+            // Model Validation
+            if (ModelState.IsValid)
+            {
+
+                #region Save to database
+                using (memcombdbEntities dc = new memcombdbEntities())
+                {
+
+                    Status = true;
+                    return View();
+                }
+                #endregion
+
+            }
+            else
+            {
+                message = "Invalid request";
+            }
+
+            ViewBag.Message = message;
+            ViewBag.Status = Status;
+            return View(user);
+
+        }
+
+        public ActionResult About()
 		{
 			ViewBag.Message = "Your application description page.";
 
@@ -33,5 +71,96 @@ namespace Memcomb.Controllers
 
 			return View();
 		}
-	}
+        
+        //Login POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(UserLogin login, string ReturnUrl)
+        {
+            string message = "";
+            using (memcombdbEntities dc = new memcombdbEntities())
+            {
+                var v = dc.Users.Where(a => a.Email_ID == login.Email_ID).FirstOrDefault();
+                if (v != null)
+                {
+                    if (string.Compare(login.Password, v.Password) == 0)
+                    {
+                        int timeout = login.RememberMe ? 525600 : 20;
+                        var ticket = new FormsAuthenticationTicket(login.Email_ID, login.RememberMe, timeout);
+                        string encrypted = FormsAuthentication.Encrypt(ticket);
+                        var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
+                        cookie.Expires = DateTime.Now.AddMinutes(timeout);
+                        cookie.HttpOnly = true;
+                        Response.Cookies.Add(cookie);
+
+                        if (Url.IsLocalUrl(ReturnUrl))
+                        {
+                            return Redirect(ReturnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("Index", "HomePage");
+                        }
+                    }
+                    else
+                    {
+                        message = "Invalid password provided";
+                    }
+                }
+                else
+                {
+                    message = "Invalid credential provided";
+                }
+            }
+
+            ViewBag.Message = message;
+            return View();
+        }
+
+        /*
+        //Login POST
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Login(UserLogin login, string ReturnUrl = "")
+        {
+            string message = "";
+            using (memcombdbEntities dc = new memcombdbEntities())
+            {
+                var v = dc.Users.Where(a => a.Email_ID == login.Email_ID).FirstOrDefault();
+                if (v != null)
+                {
+                    if (string.Compare(Encrypt.Hash(login.Password), v.Password) == 0)
+                    {
+                        int timeout = login.RememberMe ? 525600 : 20;
+                        var ticket = new FormsAuthenticationTicket(login.Email_ID, login.RememberMe, timeout);
+                        string encrypted = FormsAuthentication.Encrypt(ticket);
+                        var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
+                        cookie.Expires = DateTime.Now.AddMinutes(timeout);
+                        cookie.HttpOnly = true;
+                        Response.Cookies.Add(cookie);
+
+                        if (Url.IsLocalUrl(ReturnUrl))
+                        {
+                            return Redirect(ReturnUrl);
+                        }
+                        else
+                        {
+                            return RedirectToAction("~Views/HomePage/Index.cshtml");
+                        }
+                    }
+                    else
+                    {
+                        message = "Invalid password provided";
+                    }
+                }
+                else
+                {
+                    message = "Invalid credential provided";
+                }
+            }
+
+            ViewBag.Message = message;
+            return View();
+        }*/
+    }
 }

@@ -1,28 +1,106 @@
 ﻿@{
-    ViewBag.Title = "Login Page";
+	ViewBag.Title = "LogInPage";
 }
+
+@model Memcomb.Models.UserLogin
 
 <link href="@Url.Content("~/Content/LoginPage.css")" rel="stylesheet" type="text/css" />
 
-    <div class="neon-text">
-        MEMCOMB
-        <img src="~/Images/memcombLogo.png" class="img" />
-    </div>
+<head class="head">
+	<div class="neon-text">
+		MEMCOMB
+		<img src="~/Images/memcombLogoNew.png" class="img" />
+	</div>
+</head>
 
-    <div>
-        <input class="inputFields" type="text" name="FirstName" placeholder="email@example.com"><br>
-        <input class="inputFields" type="text" name="LastName" placeholder="password"><br>
-        <div>
-            <a href=@Url.Action("Index","HomePage") class="logInBtn">
-                Log In
-            </a>
-            <a href="@Url.Action("Create", "SignUps")" class="signUpBtn">
-                Sign Up
-            </a>
-        </div>
-        <div>
-            <a href="@Url.Action("Create", "SignUps")">
-                Forgot password?
-            </a>
-        </div>
-    </div>
+<body class="body">
+
+	@using (Html.BeginForm("Login", "LogInPage", FormMethod.Post))
+	{
+		@Html.AntiForgeryToken()
+
+		<div class="form-horizontal">
+			<hr />
+			@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+			@if (ViewBag.Message != "")
+			{
+				<div class="text-danger">*@ViewBag.Message</div>
+			}
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.Email_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.Email_ID, new { htmlAttributes = new { @class = "form-control" } })
+					@Html.ValidationMessageFor(model => model.Email_ID, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+				<div class="col-md-10">
+					@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+					@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-offset-2 col-md-10">
+					<input type="submit" value="Login" class="logInBtn" />
+				</div>
+			</div>
+			<a href="@Url.Action("Index", "SignUpPage")" class="signUpBtn">
+				Sign Up
+			</a>
+			<a href="@Url.Action("Create", "SignUps")">
+				Forgot password?
+			</a>
+		</div>
+	}
+
+	<!--
+		<div>
+
+
+			<input class="inputFields" type="text" name="FirstName" placeholder="email@example.com"><br>
+			<input class="inputFields" type="password" name="LastName" placeholder="password"><br>
+
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.Email_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.Email_ID, new { htmlAttributes = new { @class = "form-control" } })
+			@Html.ValidationMessageFor(model => model.Email_ID, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div class="form-group">
+		@Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+		<div class="col-md-10">
+			@Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+			@Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+		</div>
+	</div>
+
+	<div>
+		<div class="form-group">
+			<div>
+				<input type="submit" value="Login" class="logInBtn" />
+			</div>
+		</div>
+		<!--
+		<a href=@Url.Action("Index","HomePage") class="logInBtn">
+			Log In
+		</a>
+		--
+	<a href="@Url.Action("Index", "SignUpPage")" class="signUpBtn">
+		Sign Up
+	</a>
+	</div>
+	<div>
+		<a href="@Url.Action("Create", "SignUps")">
+			Forgot password?
+		</a>
+	</div>
+	</div>-->
+</body>

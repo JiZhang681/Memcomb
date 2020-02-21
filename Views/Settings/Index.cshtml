@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<link href="@Url.Content("~/Content/Settings.css")" rel="stylesheet" type="text/css" />
+
+<body>
+    <h1>Settings</h1>
+    <br />
+    <div>
+        <div>
+            <h2>Account Information</h2>
+            Username <br />
+            <input type="text" value="Username" />
+            <br />
+            Gmail <br />
+            <input type="text" value="Gmail" />
+            <br />
+            Password <br />
+            <input type="text" value="Password" />
+            <input type="submit" value="Reset" />
+        </div>
+        <div>
+            <h2>Blocked Accounts</h2>
+            <br />
+        </div>
+        <div>
+            <h2>Privacy and Security</h2>
+            <div class="switchLine">
+                <div class="left">Set Privacy settings:</div>
+                <div class="right">
+                    <input type="checkbox" />
+                </div>
+            </div>
+        </div>
+        <div>
+            <h2>Report a Problem</h2>
+            <div>
+                <input type="text" />
+            </div>
+            <br />
+            <div>
+                <input type="submit" value="Report Problem" />
+            </div>
+        </div>
+        <div>
+            <h2>Options</h2>
+            <div>
+                <input type="submit" value="Add Accounts" />
+            </div>
+            <br />
+            <div>
+                <input type="submit" value="Log out" />
+            </div>
+            <br />
+            <div>
+                <input type="submit" value="Delete Account" />
+            </div>
+        </div>
+    </div>
+</body>
+
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			@Html.ActionLink("Memcomb", "Index", "LogInPage", new { area = "" }, new { @class = "navbar-brand" })
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li>@Html.ActionLink("Home", "Index", "LogInPage")</li>
+				<li>@Html.ActionLink("Notifications", "About", "LogInPage")</li>
+				<li>@Html.ActionLink("Messages", "Index", "LogInPage")</li>
+				<li>@Html.ActionLink("Profile", "Index", "Profile")</li>
+				<li>@Html.ActionLink("Settings", "Index", "Settings")</li>
+			</ul>
+		</div>
+	</div>
+</div>

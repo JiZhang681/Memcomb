@@ -1,13 +1,69 @@
 ﻿@{
-	ViewBag.Title = "Profile";
+    ViewBag.Title = "Profile";
 }
+@{
+    WebImage photo = null;
+    var newFileName = "";
+    var imagePath = "";
+    if (IsPost)
+    {
+        photo = WebImage.GetImageFromRequest();
+        if (photo != null)
+        {
+            newFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(photo.FileName);
+            imagePath = @"Images\"+newFileName;
+            photo.Save(@"~\"+imagePath);
+        }
+    }
+ }
+@{ 
+    WebImage Profilephoto = null;
+    var ProfileFileName = "";
+    var ProfilePath = "";
+    if (IsPost)
+    {
+        photo = WebImage.GetImageFromRequest();
+        if (Profilephoto != null)
+        {
+            ProfileFileName = Guid.NewGuid().ToString() + "_" + Path.GetFileName(photo.FileName);
+            ProfilePath = @"Images\" + ProfileFileName;
+            Profilephoto.Save(@"~\" + ProfilePath);
+        }
+    }
+}
+
 <link href="@Url.Content("~/Content/Profile.css")" rel="stylesheet" type="text/css" />
 
 <head>
 	<div class="head">
+		<div class="banner">
+		@if (imagePath != "")
+		{
+			<div class="background-image">
+				<img src="@imagePath" />
+			</div>
+			<br />
+        }
+        else
+        {
+			<div class="background-image">Upload background image</div>
+        }
+		</div>
 		<div class="spaceBetween">
+			@if (ProfilePath != "")
+            {
+				<img src="@ProfilePath" />
+            }
+            else
+            {
 			<img src="@Url.Content("~/Content/Images/facebookdefaultprofile.jpg")" />
-			Back ground Image
+            }
+			<!--<input type="file" onchange="loadImageFile(this)"/>-->
+			<form action="" method="post" enctype="multipart/form-data">
+				<input type="file" name="Image" />
+				</br>
+				<input type="submit" value="Upload" />
+			</form>
 			<div>
 				<a href="@Url.Action("Index","HomePage")" class="editProfileBtn">
 					Edit Profile
@@ -21,6 +77,7 @@
 			<p>Bio</p>
 		</div>
 	</div>
+
 	<div class="followerRow">
 		<table>
 			<tr>
@@ -45,51 +102,34 @@
 </head>
 
 <body>
-	This is where posts will go
+	<div>
+		<p>
+			<form class="posts" action="" method="post">
+				<input class="text-box" type="text" name="Posts" /> <br />
+				<input class="post-btn" type="submit" value="Post" />
+			</form>
+		</p>
+	</div>
 </body>
 
-		<!---
-		<!DOCTYPE html>
-		<html>
-		<head>
-			<meta name="viewport" content="width=device-width" />
-			<title>User's Username</title>
-			<div>
-				<img src="@Url.Content("~/Content/Images/facebookdefaultprofile.jpg")" />
-			</div>
-			<h1>User's Name</h1>
-			<td>___________________________________________________</td>
-			<table>
-				<tr>
-					<td>
-						| Number of followers
-					</td>
-					<!--
-					<td>
-						&nbsp;&nbsp;|&nbsp;&nbsp;
-					</td>
-					--
-					<td>
-						Number of Memories
-					</td>
-					<!--
-					<td>
-						&nbsp;&nbsp;|&nbsp;&nbsp;
-					</td>
-					--
-					<td>
-						This is my bio |
-					</td>
-				</tr>
-			</table>
-			<td>___________________________________________________</td>
-			<br />
-			<button>Edit Profile</button>
-			</head>
-			<body>
-				<div>
-					<button>Upload</button>
-				</div>
-			</body>
-		</html>
-		-->
+<div class="navbar navbar-inverse navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			@Html.ActionLink("Memcomb", "Index", "LogInPage", new { area = "" }, new { @class = "navbar-brand" })
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li>@Html.ActionLink("Home", "Index", "LogInPage")</li>
+				<li>@Html.ActionLink("Notifications", "About", "LogInPage")</li>
+				<li>@Html.ActionLink("Messages", "Index", "LogInPage")</li>
+				<li>@Html.ActionLink("Profile", "Index", "Profile")</li>
+				<li>@Html.ActionLink("Settings", "Index", "Settings")</li>
+			</ul>
+		</div>
+	</div>
+</div>

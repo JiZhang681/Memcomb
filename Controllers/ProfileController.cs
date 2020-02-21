@@ -19,7 +19,15 @@ namespace Memcomb.Controllers
         {
             return View();
         }
-
+        [HttpPost]
+        public ActionResult Upload(HttpPostedFileBase file) {
+                if (file != null && file.ContentLength > 0) {
+                    var fileName = Path.GetFileName(file.FileName);
+                    var path = Path.Combine(Server.MapPath("~/Images/"), fileName);
+                    file.SaveAs(path);
+                }
+            return RedirectToAction("Index");
+        }
         // GET: Profile/Create
         public ActionResult Create()
         {

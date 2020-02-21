@@ -1,29 +1,93 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
+	ViewBag.Title = "Index";
 }
 
-    <link href="@Url.Content("~/Content/HomePage.css")" rel="stylesheet" type="text/css" />
+<link href="@Url.Content("~/Content/HomePage.css")" rel="stylesheet" type="text/css" />
 
+<body class="body">
+	<!-- Trigger/Open The Modal -->
+	<button id="myBtn" class="createMemoryBtn">Create Memory</button>
+
+	<!-- The Modal -->
+	<div id="myModal" class="modal">
+
+		<!-- Modal content -->
+		<div class="modal-content">
+			<asp:FileUpload ID="FileUpload1" runat="server" />
+			<asp:Button Text="Upload to FTP" runat="server" OnClick="FTPUpload" />
+			<hr />
+			<asp:Label ID="lblMessage" runat="server" />
+			<span class="close">&times;</span>
+			<p>Some text in the Modal..</p>
+		</div>
+
+	</div>
+</body>
+
+<script>
+	// Get the modal
+	var modal = document.getElementById("myModal");
+
+	// Get the button that opens the modal
+	var btn = document.getElementById("myBtn");
+
+	// Get the <span> element that closes the modal
+	var span = document.getElementsByClassName("close")[0];
+
+	// When the user clicks the button, open the modal
+	btn.onclick = function () {
+		modal.style.display = "block";
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	span.onclick = function () {
+		modal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.onclick = function (event) {
+		if (event.target == modal) {
+			modal.style.display = "none";
+		}
+	}
+</script>
+
+<!--
+	<script type="text/javascript">
+		ShowPopup = function () { window.open('~/Views/HomePage/CreateMemory', "PopupWindow", 'width=400px,height=400px,top=150,left=250');}
+	</script>
+
+	<div>
+		<input type="button" id="PopUpBtn" value="Open Modal Popup" onclick="ShowPopup();" />
+	</div>
+
+	<div>
+		<asp:FileUpload ID="FileUpload1" runat="server" />
+		<asp:Button Text="Upload to FTP" runat="server" OnClick="FTPUpload" />
+		<hr />
+		<asp:Label ID="lblMessage" runat="server" />
+	</div>
+-->
 <div class="navbar navbar-inverse navbar-fixed-top">
-    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            @Html.ActionLink("Memcomb", "Index", "LogInPage", new { area = "" }, new { @class = "navbar-brand" })
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                <li>@Html.ActionLink("Home", "Index", "LogInPage")</li>
-                <li>@Html.ActionLink("Notifications", "About", "LogInPage")</li>
-                <li>@Html.ActionLink("Messages", "Index", "LogInPage")</li>
-                <li>@Html.ActionLink("Profile", "Index", "Profile")</li>
-                <li>@Html.ActionLink("Settings", "Index", "LogInPage")</li>
-            </ul>
-        </div>
-    </div>
+	<div class="container">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			@Html.ActionLink("Memcomb", "Index", "LogInPage", new { area = "" }, new { @class = "navbar-brand" })
+		</div>
+		<div class="navbar-collapse collapse">
+			<ul class="nav navbar-nav">
+				<li>@Html.ActionLink("Home", "Index", "LogInPage")</li>
+				<li>@Html.ActionLink("Notifications", "About", "LogInPage")</li>
+				<li>@Html.ActionLink("Messages", "Index", "LogInPage")</li>
+				<li>@Html.ActionLink("Profile", "Index", "Profile")</li>
+				<li>@Html.ActionLink("Settings", "Index", "Settings")</li>
+			</ul>
+		</div>
+	</div>
 </div>
 
