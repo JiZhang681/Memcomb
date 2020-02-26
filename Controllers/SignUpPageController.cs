@@ -233,7 +233,7 @@ namespace Memcomb.Controllers
                 IsBodyHtml = true
             })
 
-                smtp.Send(message);
+               // smtp.Send(message);
         }
         
         //Forgot password

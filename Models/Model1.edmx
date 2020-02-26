@@ -5,6 +5,16 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
       <Schema Namespace="memcombdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Comments">
+          <Key>
+            <PropertyRef Name="Comment_ID" />
+          </Key>
+          <Property Name="Comment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Fragment_ID" Type="int" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Datetime_Posted" Type="datetime" />
+          <Property Name="Comment" Type="text" Nullable="false" />
+        </EntityType>
         <EntityType Name="Following">
           <Key>
             <PropertyRef Name="User_Following" />
@@ -67,6 +77,20 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Fragments">
+          <End Role="Fragments" Type="Self.Fragments" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comments" Type="Self.Comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fragments">
+              <PropertyRef Name="Fragment_ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="Fragment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Memories">
           <End Role="Memories" Type="Self.Memories" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -96,6 +120,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="memcombdbModelStoreContainer">
+          <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Following" EntityType="Self.Following" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Fragments" EntityType="Self.Fragments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Memories" EntityType="Self.Memories" Schema="dbo" store:Type="Tables" />
@@ -103,6 +128,10 @@
           <AssociationSet Name="FK_Following_Users" Association="Self.FK_Following_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Following" EntitySet="Following" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Fragments" Association="Self.FK_Fragments">
+            <End Role="Fragments" EntitySet="Fragments" />
+            <End Role="Comments" EntitySet="Comments" />
           </AssociationSet>
           <AssociationSet Name="FK_Memories" Association="Self.FK_Memories">
             <End Role="Memories" EntitySet="Memories" />
@@ -118,6 +147,17 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="memcombdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Comment">
+          <Key>
+            <PropertyRef Name="Comment_ID" />
+          </Key>
+          <Property Name="Comment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Fragment_ID" Type="Int32" Nullable="false" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Datetime_Posted" Type="DateTime" Precision="3" />
+          <Property Name="Comment1" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Fragment" Relationship="Self.FK_Fragments" FromRole="Comments" ToRole="Fragments" />
+        </EntityType>
         <EntityType Name="Following">
           <Key>
             <PropertyRef Name="User_Following" />
@@ -139,6 +179,7 @@
           <Property Name="Memory_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
           <Property Name="Fragment_Data" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Is_Highlight" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Comments" Relationship="Self.FK_Fragments" FromRole="Fragments" ToRole="Comments" />
           <NavigationProperty Name="Memory" Relationship="Self.FK_Memories" FromRole="Fragments" ToRole="Memories" />
         </EntityType>
         <EntityType Name="Memory">
@@ -172,6 +213,20 @@
           <NavigationProperty Name="Followings" Relationship="Self.FK_Following_Users" FromRole="Users" ToRole="Following" />
           <NavigationProperty Name="Memories" Relationship="Self.FK_Users" FromRole="Users" ToRole="Memories" />
         </EntityType>
+        <Association Name="FK_Fragments">
+          <End Role="Fragments" Type="Self.Fragment" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Comments" Type="Self.Comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Fragments">
+              <PropertyRef Name="Fragment_ID" />
+            </Principal>
+            <Dependent Role="Comments">
+              <PropertyRef Name="Fragment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Following_Users">
           <End Role="Users" Type="Self.User" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -215,10 +270,15 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="memcombdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Comments" EntityType="Self.Comment" />
           <EntitySet Name="Followings" EntityType="Self.Following" />
           <EntitySet Name="Fragments" EntityType="Self.Fragment" />
           <EntitySet Name="Memories" EntityType="Self.Memory" />
           <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Fragments" Association="Self.FK_Fragments">
+            <End Role="Fragments" EntitySet="Fragments" />
+            <End Role="Comments" EntitySet="Comments" />
+          </AssociationSet>
           <AssociationSet Name="FK_Following_Users" Association="Self.FK_Following_Users">
             <End Role="Users" EntitySet="Users" />
             <End Role="Following" EntitySet="Followings" />
@@ -238,6 +298,17 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="memcombdbModelStoreContainer" CdmEntityContainer="memcombdbEntities">
+          <EntitySetMapping Name="Comments">
+            <EntityTypeMapping TypeName="memcombdbModel.Comment">
+              <MappingFragment StoreEntitySet="Comments">
+                <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
+                <ScalarProperty Name="Fragment_ID" ColumnName="Fragment_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Datetime_Posted" ColumnName="Datetime_Posted" />
+                <ScalarProperty Name="Comment1" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Followings">
             <EntityTypeMapping TypeName="memcombdbModel.Following">
               <MappingFragment StoreEntitySet="Following">
