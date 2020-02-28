@@ -14,6 +14,13 @@ namespace Memcomb.Models
     
     public partial class User
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public User()
+        {
+            this.Followings = new HashSet<Following>();
+            this.Memories = new HashSet<Memory>();
+        }
+    
         public int User_ID { get; set; }
         public string First_Name { get; set; }
         public string Last_Name { get; set; }
@@ -26,5 +33,10 @@ namespace Memcomb.Models
         public bool Is_Verified { get; set; }
         public string Activation_Code { get; set; }
         public bool Is_Admin { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Following> Followings { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Memory> Memories { get; set; }
     }
 }
