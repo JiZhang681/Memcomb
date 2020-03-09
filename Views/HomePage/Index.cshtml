@@ -5,7 +5,7 @@
 
 <link href="@Url.Content("~/Content/HomePage.css")" rel="stylesheet" type="text/css" />
 
-@model Memcomb.Models.Memory
+@model Memcomb.Models.HomePageModel
 
 <body class="body">
 	<!-- Trigger/Open The Modal -->
@@ -16,16 +16,55 @@
 
 		<!-- Modal content -->
 		<div class="modal-content">
-			<input type="file" id="FileUpload1" name="myfile">
-			<hr />
-			<div>
-				<div>
-					@Html.EditorFor(model => model.Memory_Description, new { htmlAttributes = new { @class = "form-control inputFields", required = true, placeholder = "Description" } })
-				</div>
-			</div>
-			<span class="close">&times;</span>
-		</div>
 
+			@using (Html.BeginForm("Index", "HomePage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+			{
+				@Html.AntiForgeryToken()
+				<div class="col-md-12">
+					<div class="form-horizontal">
+						<div class="form-group col-md-12">
+							@Html.EditorFor(model => model.memory.Memory_Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Memory Title" } })
+							@Html.EditorFor(model => model.memory.Memory_Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Memory Description" } })
+						</div>
+						<div class="form-group col-md-12">
+							<div class="form-inline">
+								<div class="btn btn-primary">
+									<!--<input type="file" id="imageBrowes" />-->
+									@Html.TextBoxFor(model => model.fragment.getImagePath, new { @class = "form-control", type = "file", id = "imageBrowes" })
+								</div>
+								<span>
+									<input type="submit" value="Post Memory!" class="btn" />
+								</span>
+								<span class="close">&times;</span>
+							</div>
+							<div>
+								<input type="button" id="button" onclick="duplicate()" value="Add Another Image" class="btn" />
+							</div>
+
+							<hr />
+						</div>
+						<div class="form-inline">
+							<div id="duplicator" class="form-group col-md-3">
+								<div id="imgPreview" class="thumbnail" style="display:none">
+									<img id="targetImg" class="img-responsive" />
+									<div class="caption">
+										@Html.EditorFor(model => model.fragment.Fragment_Location, new { htmlAttributes = new { @class = "form-control", id = "memoryLocation", placeholder = "City, State" } })
+										<!--<input type="text" id="memoryLocation" placeholder="City, State" />-->
+										@Html.EditorFor(model => model.fragment.Fragment_Date, new { htmlAttributes = new { @class = "form-control", id = "memoryDate", placeholder = "mm/dd/yyyy" } })
+										<!----<input type="text" id="memoryDate" placeholder="mm/dd/yyyy" />-->
+										<!----<textarea type="text" id="memoryCaption" placeholder="Your Caption" maxlength="300" rows="5" cols="50" class="descriptionInput"></textarea>-->
+										@Html.EditorFor(model => model.fragment.Memory_Description, new { htmlAttributes = new { @class = "form-control", id = "memoryCaption", placeholder = "Caption" } })
+										<br /><span id="highlight">Make this your highlight? @Html.EditorFor(model => model.fragment.Is_Highlight)</span><br />
+										<a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
+										<span id="description"></span>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			 }
+		</div>
 	</div>
 </body>
 
@@ -55,6 +94,88 @@
 			modal.style.display = "none";
 		}
 	}
+</script>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script>
+
+	var i = 0;
+
+	$(document).ready(function () {
+		$("#imageBrowes").change(function () {
+			var File = this.files;
+
+			if (File && File[0]) {
+				ReadImage(File[0]);
+			}
+
+		})
+	})
+
+	var ReadImage = function (file) {
+
+		var reader = new FileReader;
+		var image = new Image;
+
+		reader.readAsDataURL(file);
+		reader.onload = function (_file) {
+
+			image.src = _file.target.result;
+			image.onload = function () {
+
+				var height = this.height;
+				var width = this.width;
+				var type = file.type;
+				var size = ~~(file.size / 1024) + "KB";
+
+				$("#targetImg").attr('src', _file.target.result);
+				$("#description").text("Size:" + size + ", " + height + "X" + width + " " + type + "");
+				$("#imgPreview").show();
+			}
+		}
+	}
+
+	$(document).ready(function () {
+		$("#saveToDB").click(function () {
+			$.ajax(
+				{
+					type: "POST", //HTTP POST Method
+					url: "HomePage/Index", // Controller/View
+					data: { //Passing data
+						Fragment_Data: $("#targetImg" + i).val(), //Reading text box values using Jquery
+						Fragment_Date: $("#memoryDate" + i).val(),
+						Memory_Description: $("#memoryCaption" + i).val(),
+						Fragment_Location: $("#memoryLocation" + i).val(),
+						Is_Highlight: $("#highlight" + i).val()
+
+					}
+
+				});
+		});
+	});
+
+	var divDuplicator = document.getElementById('duplicator');
+
+	function duplicate() {
+		var clone = divDuplicator.cloneNode(true); // "deep" clone
+		clone.id = "targetImg" + ++i;
+		// or clone.id = ""; if the divs don't need an ID
+		divDuplicator.parentNode.appendChild(clone);
+	}
+
+	var ClearPreview = function () {
+		$("#imageBrowes").val("");
+		//$("#description" + i).text("");
+		//$("#imgPreview" + i).hide();
+
+		$(document).on("click", "#targetImg" + i, function () {
+			$(this).remove();
+		})
+
+		i = i - 1;
+	}
+
 </script>
 
 <div class="navbar navbar-inverse navbar-fixed-top">

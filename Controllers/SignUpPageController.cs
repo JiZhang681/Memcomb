@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Memcomb.Models;
 using System.Net;
 using System.Web.Security;
+using System.IO;
 
 namespace Memcomb.Controllers
 {
@@ -67,7 +68,8 @@ namespace Memcomb.Controllers
                     message = "Registration was successful. Check your email for verification link " +
                         "at your email: " + user.Email_ID;
                     Status = true;
-                    return View("~/Views/HomePage/Index.cshtml");
+                    Directory.CreateDirectory(Server.MapPath("~/Memories/User_ID" + user.User_ID));
+                    return View("~/Views/LogInPage/Index.cshtml");
                 }
                 #endregion
             
@@ -114,52 +116,6 @@ namespace Memcomb.Controllers
         {
             return View();
         }
-
-        /*Move to login controller
-        //Login POST
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Login(UserLogin login, string ReturnUrl = "")
-        {
-            string message = "";
-            using (memcombdbEntities dc = new memcombdbEntities())
-            {
-                var v = dc.Users.Where(a => a.Email_ID == login.Email_ID).FirstOrDefault();
-                if (v != null)
-                {
-                    if (string.Compare(Encrypt.Hash(login.Password), v.Password) == 0)
-                    {
-                        int timeout = login.RememberMe ? 525600 : 20;
-                        var ticket = new FormsAuthenticationTicket(login.Email_ID, login.RememberMe, timeout);
-                        string encrypted = FormsAuthentication.Encrypt(ticket);
-                        var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
-                        cookie.Expires = DateTime.Now.AddMinutes(timeout);
-                        cookie.HttpOnly = true;
-                        Response.Cookies.Add(cookie);
-
-                        if (Url.IsLocalUrl(ReturnUrl))
-                        {
-                            return Redirect(ReturnUrl);
-                        }
-                        else
-                        {
-                            return RedirectToAction("Index", "Home");
-                        }
-                    }
-                    else
-                    {
-                        message = "Invalid password provided";
-                    }
-                }
-                else
-                {
-                    message = "Invalid credential provided";
-                }
-            }
-
-            ViewBag.Message = message;
-            return View();
-        }*/
 
         /* Move to future log out button
         //Logout 
