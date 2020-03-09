@@ -187,7 +187,7 @@ namespace Memcomb.Controllers
                 Subject = subject,
                 Body = body,
                 IsBodyHtml = true
-            })
+            }) ;
 
                // smtp.Send(message);
         }

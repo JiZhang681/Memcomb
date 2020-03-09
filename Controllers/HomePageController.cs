@@ -48,8 +48,8 @@ namespace Memcomb.Controllers
                         int memoryIDForFolder = dc.Memories.Max(u => u.Memory_ID);
                         int fragmentIDPath = dc.Fragments.Max(u => u.Fragment_ID);
 
-                        memoryIDForFolder = memoryIDForFolder + 1;
-                        fragmentIDPath = fragmentIDPath + 1;
+                       memoryIDForFolder = memoryIDForFolder + 1;
+                       fragmentIDPath = fragmentIDPath + 1;
 
                         Memory newMemory = new Memory()
                         {
