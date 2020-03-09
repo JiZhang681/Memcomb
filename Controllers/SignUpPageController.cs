@@ -63,7 +63,7 @@ namespace Memcomb.Controllers
                     dc.SaveChanges();
 
                     //Send confirmation email to user
-                    //SendVerificationLinkEmail(user.Email_ID, user.User_ID.ToString());
+                    SendVerificationLinkEmail(user.Email_ID, user.User_ID.ToString());
                     message = "Registration was successful. Check your email for verification link " +
                         "at your email: " + user.Email_ID;
                     Status = true;
@@ -92,7 +92,7 @@ namespace Memcomb.Controllers
             using (memcombdbEntities dc = new memcombdbEntities())
             {
                 dc.Configuration.ValidateOnSaveEnabled = false; //Makes sure confirm password field does not match on save
-                var v = dc.Users.Where(a => a.Activation_Code == new Guid(id)).FirstOrDefault();
+                var v = dc.Users.Where(a => a.Activation_Code == new Guid(id)).FirstOrDefault(); 
                 if (v != null)
                 {
                     v.IsEmailVerified = true;
@@ -182,7 +182,7 @@ namespace Memcomb.Controllers
             }
         }
 
-        /*
+        
         [NonAction]
         public void SendVerificationLinkEmail(string emailID, string activationCode, string emailFor = "VerifyAccount")
         {
@@ -235,7 +235,7 @@ namespace Memcomb.Controllers
 
                 smtp.Send(message);
         }
-        */
+        
         //Forgot password
 
         public ActionResult ForgotPassword()

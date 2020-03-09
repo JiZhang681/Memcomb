@@ -1,16 +1,12 @@
 ﻿.body {
 	text-align: center; /*Centers all input fields, buttons, and text on screen*/
-	/*display: flex;*/
 	justify-content: center;
-	/*background-color: #333300;
-		background-color: #ff8c00;
-	
-	background-color: #ff6000;*/
 	background-image: linear-gradient( to right, rgba(113,18,3,0) 0%, rgba(113,18,3,0) 5%, rgba(113,18,3,1) 15%, rgba(113,18,3,1) 85%, rgba(113,18,3,0) 95%, rgba(113,18,3,0) 100% ),url('../Images/LogInPageBackground.png');
 	background-position: left,center;
 	background-repeat: initial,repeat;
 	background-attachment: fixed,fixed;
 	margin: 0;
+	color: #ffffff;
 }
 
 .head {
@@ -25,8 +21,12 @@
 	width: 25%;
 }
 
+.labelText {
+	font-weight: bold;
+}
+
 .inputFields {
-	width: 100%; 
+	width: 300px; 
 	padding: 12px 20px;
 	margin: 8px 0;
 	display: inline-block;
@@ -38,7 +38,7 @@
 .logInBtn {
 	font-weight: bold;
 	color: #000000;
-	width: 10%;
+	width: 100px;
 	padding: 12px 20px;
 	margin: 8px 0;
 	display: inline-block;
@@ -51,7 +51,7 @@
 .signUpBtn {
 	font-weight: bold;
 	color: #000000;
-	width: 10%;
+	width: 100px;
 	padding: 12px 20px;
 	margin: 8px 0;
 	display: inline-block;
@@ -60,6 +60,7 @@
 	border-radius: 4px;
 	box-sizing: border-box;
 } 
+
 @font-face {
 	font-family: neon;
 	src: url('../fonts/ocra.ttf') format('truetype');

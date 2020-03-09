@@ -1,0 +1,315 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="memcombdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Following">
+          <Key>
+            <PropertyRef Name="User_Following" />
+            <PropertyRef Name="User_Followed" />
+          </Key>
+          <Property Name="User_Following" Type="int" Nullable="false" />
+          <Property Name="User_Followed" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Fragments">
+          <Key>
+            <PropertyRef Name="Fragment_ID" />
+          </Key>
+          <Property Name="Fragment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Memory_ID" Type="int" Nullable="false" />
+          <Property Name="Date_Posted" Type="datetime" />
+          <Property Name="Fragment_Date" Type="datetime" Nullable="false" />
+          <Property Name="Fragment_Location" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Memory_Description" Type="text" />
+          <Property Name="Fragment_Data" Type="varchar" MaxLength="500" />
+          <Property Name="Is_Highlight" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Memories">
+          <Key>
+            <PropertyRef Name="Memory_ID" />
+          </Key>
+          <Property Name="Memory_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="int" Nullable="false" />
+          <Property Name="Date_Created" Type="date" />
+          <Property Name="Memory_Title" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Memory_Description" Type="varchar" MaxLength="300" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="First_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Last_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email_ID" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date_Of_Birth" Type="date" />
+          <Property Name="Phone_Number" Type="varchar" MaxLength="10" />
+          <Property Name="Profile_Picture" Type="varchar" MaxLength="100" />
+          <Property Name="Biography" Type="varchar" MaxLength="300" />
+          <Property Name="Is_Verified" Type="bit" Nullable="false" />
+          <Property Name="Activation_Code" Type="varchar" MaxLength="16" />
+          <Property Name="Is_Admin" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Following_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Following" Type="Self.Following" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Following">
+              <PropertyRef Name="User_Following" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Memories">
+          <End Role="Memories" Type="Self.Memories" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Fragments" Type="Self.Fragments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Memories">
+              <PropertyRef Name="Memory_ID" />
+            </Principal>
+            <Dependent Role="Fragments">
+              <PropertyRef Name="Memory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Memories" Type="Self.Memories" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Memories">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="memcombdbModelStoreContainer">
+          <EntitySet Name="Following" EntityType="Self.Following" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fragments" EntityType="Self.Fragments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Memories" EntityType="Self.Memories" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Following_Users" Association="Self.FK_Following_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Following" EntitySet="Following" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Memories" Association="Self.FK_Memories">
+            <End Role="Memories" EntitySet="Memories" />
+            <End Role="Fragments" EntitySet="Fragments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users" Association="Self.FK_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Memories" EntitySet="Memories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="memcombdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Following">
+          <Key>
+            <PropertyRef Name="User_Following" />
+            <PropertyRef Name="User_Followed" />
+          </Key>
+          <Property Name="User_Following" Type="Int32" Nullable="false" />
+          <Property Name="User_Followed" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Following_Users" FromRole="Following" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Fragment">
+          <Key>
+            <PropertyRef Name="Fragment_ID" />
+          </Key>
+          <Property Name="Fragment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Memory_ID" Type="Int32" Nullable="false" />
+          <Property Name="Date_Posted" Type="DateTime" Precision="3" />
+          <Property Name="Fragment_Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Fragment_Location" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Memory_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="Fragment_Data" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Is_Highlight" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Memory" Relationship="Self.FK_Memories" FromRole="Fragments" ToRole="Memories" />
+        </EntityType>
+        <EntityType Name="Memory">
+          <Key>
+            <PropertyRef Name="Memory_ID" />
+          </Key>
+          <Property Name="Memory_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="Int32" Nullable="false" />
+          <Property Name="Date_Created" Type="DateTime" Precision="0" />
+          <Property Name="Memory_Title" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Memory_Description" Type="String" MaxLength="300" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Fragments" Relationship="Self.FK_Memories" FromRole="Memories" ToRole="Fragments" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Users" FromRole="Memories" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="First_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Last_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email_ID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Date_Of_Birth" Type="DateTime" Precision="0" />
+          <Property Name="Phone_Number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Profile_Picture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Biography" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
+          <Property Name="Is_Verified" Type="Boolean" Nullable="false" />
+          <Property Name="Activation_Code" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Is_Admin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Followings" Relationship="Self.FK_Following_Users" FromRole="Users" ToRole="Following" />
+          <NavigationProperty Name="Memories" Relationship="Self.FK_Users" FromRole="Users" ToRole="Memories" />
+        </EntityType>
+        <Association Name="FK_Following_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Following" Type="Self.Following" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Following">
+              <PropertyRef Name="User_Following" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Memories">
+          <End Role="Memories" Type="Self.Memory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Fragments" Type="Self.Fragment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Memories">
+              <PropertyRef Name="Memory_ID" />
+            </Principal>
+            <Dependent Role="Fragments">
+              <PropertyRef Name="Memory_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Users">
+          <End Role="Users" Type="Self.User" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Memories" Type="Self.Memory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="Memories">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="memcombdbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Followings" EntityType="Self.Following" />
+          <EntitySet Name="Fragments" EntityType="Self.Fragment" />
+          <EntitySet Name="Memories" EntityType="Self.Memory" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <AssociationSet Name="FK_Following_Users" Association="Self.FK_Following_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Following" EntitySet="Followings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Memories" Association="Self.FK_Memories">
+            <End Role="Memories" EntitySet="Memories" />
+            <End Role="Fragments" EntitySet="Fragments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Users" Association="Self.FK_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Memories" EntitySet="Memories" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="memcombdbModelStoreContainer" CdmEntityContainer="memcombdbEntities">
+          <EntitySetMapping Name="Followings">
+            <EntityTypeMapping TypeName="memcombdbModel.Following">
+              <MappingFragment StoreEntitySet="Following">
+                <ScalarProperty Name="User_Following" ColumnName="User_Following" />
+                <ScalarProperty Name="User_Followed" ColumnName="User_Followed" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fragments">
+            <EntityTypeMapping TypeName="memcombdbModel.Fragment">
+              <MappingFragment StoreEntitySet="Fragments">
+                <ScalarProperty Name="Fragment_ID" ColumnName="Fragment_ID" />
+                <ScalarProperty Name="Memory_ID" ColumnName="Memory_ID" />
+                <ScalarProperty Name="Date_Posted" ColumnName="Date_Posted" />
+                <ScalarProperty Name="Fragment_Date" ColumnName="Fragment_Date" />
+                <ScalarProperty Name="Fragment_Location" ColumnName="Fragment_Location" />
+                <ScalarProperty Name="Memory_Description" ColumnName="Memory_Description" />
+                <ScalarProperty Name="Fragment_Data" ColumnName="Fragment_Data" />
+                <ScalarProperty Name="Is_Highlight" ColumnName="Is_Highlight" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Memories">
+            <EntityTypeMapping TypeName="memcombdbModel.Memory">
+              <MappingFragment StoreEntitySet="Memories">
+                <ScalarProperty Name="Memory_ID" ColumnName="Memory_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Date_Created" ColumnName="Date_Created" />
+                <ScalarProperty Name="Memory_Title" ColumnName="Memory_Title" />
+                <ScalarProperty Name="Memory_Description" ColumnName="Memory_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="memcombdbModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="First_Name" ColumnName="First_Name" />
+                <ScalarProperty Name="Last_Name" ColumnName="Last_Name" />
+                <ScalarProperty Name="Email_ID" ColumnName="Email_ID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Date_Of_Birth" ColumnName="Date_Of_Birth" />
+                <ScalarProperty Name="Phone_Number" ColumnName="Phone_Number" />
+                <ScalarProperty Name="Profile_Picture" ColumnName="Profile_Picture" />
+                <ScalarProperty Name="Biography" ColumnName="Biography" />
+                <ScalarProperty Name="Is_Verified" ColumnName="Is_Verified" />
+                <ScalarProperty Name="Activation_Code" ColumnName="Activation_Code" />
+                <ScalarProperty Name="Is_Admin" ColumnName="Is_Admin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
