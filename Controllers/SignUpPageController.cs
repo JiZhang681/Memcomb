@@ -182,7 +182,6 @@ namespace Memcomb.Controllers
             }
         }
 
-        
         [NonAction]
         public void SendVerificationLinkEmail(string emailID, string activationCode, string emailFor = "VerifyAccount")
         {
@@ -242,7 +241,19 @@ namespace Memcomb.Controllers
         {
             return View();
         }
-
+        [NonAction]
+        public bool ValidEmail(string emailId)
+        {
+            int length = emailId.Length;
+            if (length > 50)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
         /* Login Page
         [HttpPost]
         public ActionResult ForgotPassword(string EmailID)

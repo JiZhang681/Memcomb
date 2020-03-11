@@ -364,3 +364,15 @@ bin/Memcomb.dll.config
 .vs/Memcomb/config/applicationhost.config
 Web.config
 .vs/Memcomb/config/applicationhost.config
+bin/Memcomb.dll.config
+Images/0561f13a-30d4-4120-bbc6-b80e1b29ff6b_37153047_1543093035795479_5413491610124025856_n.jpg
+Memcomb.csproj
+Models/memcombDB.Context.tt
+Models/memcombDB.Designer.cs
+Models/memcombDB.edmx.diagram
+Models/memcombDB.tt
+packages.config
+Web.config
+Views/SignUpPage/Index.cshtml
+Models/SqlDatabaseSetup.cs
+packages.config

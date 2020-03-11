@@ -1,5 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SSDTUnitTestPath Condition="'$(SSDTUnitTestPath)' == ''">$(VsInstallRoot)\Common7\IDE\Extensions\Microsoft\SQLDB</SSDTUnitTestPath>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SSDTPath Condition="'$(SSDTPath)' == ''">$(VsInstallRoot)\Common7\IDE\Extensions\Microsoft\SQLDB\DAC\130</SSDTPath>
+  </PropertyGroup>
   <Import Project="packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -50,6 +56,9 @@
     </Reference>
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="HtmlAgilityPack, Version=1.11.21.0, Culture=neutral, PublicKeyToken=bd319b19eaf3b43a, processorArchitecture=MSIL">
+      <HintPath>packages\HtmlAgilityPack.1.11.21\lib\Net45\HtmlAgilityPack.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
@@ -117,6 +126,9 @@
       <Private>True</Private>
       <HintPath>packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
     </Reference>
+    <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
+    </Reference>
     <Reference Include="WebGrease, Version=1.6.5135.21930, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
     </Reference>
@@ -135,31 +147,32 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\Following.cs">
-      <DependentUpon>memcombDB.tt</DependentUpon>
+      <DependentUpon>memcombdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Fragment.cs">
-      <DependentUpon>memcombDB.tt</DependentUpon>
+      <DependentUpon>memcombdb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\memcombDB.Context.cs">
+    <Compile Include="Models\memcombdb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>memcombDB.Context.tt</DependentUpon>
+      <DependentUpon>memcombdb.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\memcombDB.cs">
+    <Compile Include="Models\memcombdb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>memcombDB.tt</DependentUpon>
+      <DependentUpon>memcombdb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\memcombDB.Designer.cs">
+    <Compile Include="Models\memcombdb.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>memcombDB.edmx</DependentUpon>
+      <DependentUpon>memcombdb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\Memory.cs">
-      <DependentUpon>memcombDB.tt</DependentUpon>
+      <DependentUpon>memcombdb.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\SqlDatabaseSetup.cs" />
     <Compile Include="Models\User.cs">
-      <DependentUpon>memcombDB.tt</DependentUpon>
+      <DependentUpon>memcombdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\UserLogin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -180,28 +193,29 @@
     <Content Include="Content\Site.css" />
     <Content Include="Images\LogInPageBackground.png" />
     <Content Include="Images\memcombLogo.png" />
-    <Content Include="Models\memcombDB.Context.tt">
+    <Content Include="Models\memcombdb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>memcombDB.edmx</DependentUpon>
-      <LastGenOutput>memcombDB.Context.cs</LastGenOutput>
+      <DependentUpon>memcombdb.edmx</DependentUpon>
+      <LastGenOutput>memcombdb.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\memcombDB.tt">
+    <Content Include="Models\memcombdb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>memcombDB.edmx</DependentUpon>
-      <LastGenOutput>memcombDB.cs</LastGenOutput>
+      <DependentUpon>memcombdb.edmx</DependentUpon>
+      <LastGenOutput>memcombdb.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="fonts\OCRA Regular.ttf" />
     <Content Include="fonts\OcrA.ttf" />
     <Content Include="fonts\OCRA Medium.ttf" />
-    <EntityDeploy Include="Models\memcombDB.edmx">
+    <EntityDeploy Include="Models\memcombdb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>memcombDB.Designer.cs</LastGenOutput>
+      <LastGenOutput>memcombdb.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\memcombDB.edmx.diagram">
-      <DependentUpon>memcombDB.edmx</DependentUpon>
+    <Content Include="Models\memcombdb.edmx.diagram">
+      <DependentUpon>memcombdb.edmx</DependentUpon>
     </Content>
+    <Content Include="Models\app.config" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\backgroundupload.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -254,6 +268,21 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup />
+  <ItemGroup Condition="$(VisualStudioVersion) == '16.0'">
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql, Version=15.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTPath)\Microsoft.Data.Tools.Schema.Sql.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql.UnitTesting, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter, Version=16.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
@@ -296,6 +325,11 @@
     </PropertyGroup>
     <Error Condition="!Exists('packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', 'packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
+  <PropertyGroup>
+    <SsdtUnitTestVersion>3.1</SsdtUnitTestVersion>
+  </PropertyGroup>
+  <Import Project="$(SQLDBExtensionsRefPath)\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\SSDT\Microsoft.Data.Tools.Schema.Sql.UnitTesting.targets" Condition="$(VisualStudioVersion) != '15.0' And '$(SQLDBExtensionsRefPath)' == ''" />
   <!--<Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
       <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
