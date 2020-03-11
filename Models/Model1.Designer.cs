@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb\Models\memcombDB.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\andre\Documents\GitHub\Memcomb\Models\Model1.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

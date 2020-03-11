@@ -91,6 +91,9 @@ namespace Memcomb.Controllers
                         var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);
                         cookie.Expires = DateTime.Now.AddMinutes(timeout);
                         cookie.HttpOnly = true;
+                        HttpCookie emailaddress = new HttpCookie("email");
+                        emailaddress.Value = login.Email_ID;
+                        Response.Cookies.Add(emailaddress);
                         Response.Cookies.Add(cookie);
 
                         if (Url.IsLocalUrl(ReturnUrl))

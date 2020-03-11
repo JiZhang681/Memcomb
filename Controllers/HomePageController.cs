@@ -19,6 +19,8 @@ namespace Memcomb.Controllers
 
         public ActionResult CreateMemory()
         {
+            var co_val = Response.Cookies["email"].Value;
+            Console.WriteLine(co_val);
             return View();
         }
     }
