@@ -10,8 +10,10 @@ using System.Web.Security;
 
 namespace Memcomb.Controllers
 {
+
 	public class LogInPageController : Controller
 	{
+
 
 		public ActionResult Submit()
 		{
@@ -86,6 +88,11 @@ namespace Memcomb.Controllers
                     if (string.Compare(login.Password, v.Password) == 0)
                     {
                         int timeout = login.RememberMe ? 525600 : 20;
+                        
+                        HttpCookie userIDCookie = new HttpCookie("userIDCookie", login.Email_ID);
+                        userIDCookie.Expires = DateTime.Now.AddMinutes(timeout);
+                        Response.Cookies.Add(userIDCookie);
+
                         var ticket = new FormsAuthenticationTicket(login.Email_ID, login.RememberMe, timeout);
                         string encrypted = FormsAuthentication.Encrypt(ticket);
                         var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, encrypted);

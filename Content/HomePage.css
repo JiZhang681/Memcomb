@@ -41,6 +41,19 @@
 	max-width: 80%;
 }
 
+.upLoadPicBtn {
+	font-weight: bold;
+	color: #000000;
+	width: 100px;
+	padding: 12px 20px;
+	margin: 8px 0;
+	display: inline-block;
+	background-color: #F9E779;
+	border: 1px solid #F9E779;
+	border-radius: 4px;
+	box-sizing: border-box;
+} 
+
 .createMemoryBtn {
 	font-weight: bold;
 	color: #000000;
@@ -65,6 +78,10 @@
 	border: 1px solid #F9E779;
 	border-radius: 4px;
 	box-sizing: border-box;
+}
+
+.descriptionInput{
+	width: 100%;
 }
 
 /*
