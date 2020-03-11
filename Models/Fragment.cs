@@ -11,7 +11,8 @@ namespace Memcomb.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Web;
+
     public partial class Fragment
     {
         public int Fragment_ID { get; set; }
@@ -22,7 +23,9 @@ namespace Memcomb.Models
         public string Memory_Description { get; set; }
         public string Fragment_Data { get; set; }
         public bool Is_Highlight { get; set; }
-    
+
+        public HttpPostedFileBase getImagePath { get; set; }
+
         public virtual Memory Memory { get; set; }
     }
 }

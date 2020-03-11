@@ -153,6 +153,8 @@
       <DependentUpon>memcombdb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\memcombdb.Context.cs">
+    <Compile Include="Models\HomePageModel.cs" />
+    <Compile Include="Models\memcombDB.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>memcombdb.Context.tt</DependentUpon>
@@ -247,9 +249,11 @@
     <Content Include="Views\Profile\Index.cshtml" />
     <Content Include="Views\SignUpPage\Index.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
+    <Content Include="Views\HomePage\View.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Memories\UserID\MemoryID\" />
     <Folder Include="Queries\" />
   </ItemGroup>
   <ItemGroup>
