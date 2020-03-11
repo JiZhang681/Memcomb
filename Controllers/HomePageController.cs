@@ -48,8 +48,8 @@ namespace Memcomb.Controllers
                         int memoryIDForFolder = dc.Memories.Max(u => u.Memory_ID);
                         int fragmentIDPath = dc.Fragments.Max(u => u.Fragment_ID);
 
-                        memoryIDForFolder = memoryIDForFolder + 1;
-                        fragmentIDPath = fragmentIDPath + 1;
+                       memoryIDForFolder = memoryIDForFolder + 1;
+                       fragmentIDPath = fragmentIDPath + 1;
 
                         Memory newMemory = new Memory()
                         {
@@ -65,7 +65,7 @@ namespace Memcomb.Controllers
                         if (file.ContentLength > 0)
                         {
                             var fileName = Path.GetFileName(file.FileName);
-                            var path = Path.Combine(Server.MapPath("~/Memories/User_ID_" + v.User_ID + "/Memory_ID_" + memoryIDForFolder), fragmentIDPath + "_" + fileName );
+                            var path = Path.Combine(Server.MapPath("~/Memories/User_ID_" + v.User_ID + "/Memory_ID_" + memoryIDForFolder), fragmentIDPath +   "_" + fileName );
                             file.SaveAs(path);
                        
                             model.fragment.Fragment_Data = path;
