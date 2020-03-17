@@ -83,7 +83,9 @@ namespace Memcomb.Controllers
                 var v = dc.Users.Where(a => a.Email_ID == login.Email_ID).FirstOrDefault();
                 if (v != null)
                 {
-                    if (string.Compare(login.Password, v.Password) == 0)
+                    //hashing
+                    login.Password = Encrypt.Hash(login.Password); 
+                    if (string.Compare(login.Password, v.Password) == 0) 
                     {
                         int timeout = login.RememberMe ? 525600 : 20;
                         var ticket = new FormsAuthenticationTicket(login.Email_ID, login.RememberMe, timeout);
@@ -112,7 +114,6 @@ namespace Memcomb.Controllers
                     message = "Invalid credential provided";
                 }
             }
-
             ViewBag.Message = message;
             return View();
         }

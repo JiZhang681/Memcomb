@@ -45,12 +45,11 @@ namespace Memcomb.Controllers
                 #region Generate Activation Code
                 user.ActivationCode = Guid.NewGuid();
                 #endregion
-                */
+                */ 
 
 
-                #region Password Hashing
-                //user.Password = Encrypt.Hash(user.Password);
-                //user.ConfirmPassword = Encrypt.Hash(user.ConfirmPassword);
+                #region Password Hashing 
+                user.Password = Encrypt.Hash(user.Password);
                 #endregion
 
                // user.IsEmailVerified = false;
@@ -68,7 +67,7 @@ namespace Memcomb.Controllers
                         "at your email: " + user.Email_ID;
                     Status = true;
                     return View("~/Views/HomePage/Index.cshtml");
-                }
+                } 
                 #endregion
             
             }
