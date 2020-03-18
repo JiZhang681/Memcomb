@@ -1,0 +1,9 @@
+https://cloud.google.com/storage/docs/quickstart-console
+
+https://cloud.google.com/compute/docs/instances/transfer-files#gcstransfer
+
+used no ip to get the hostname
+
+
+used to change default webpage of iis server
+https://docs.microsoft.com/en-us/iis/configuration/system.webserver/httpredirect/
