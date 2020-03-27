@@ -175,7 +175,7 @@ namespace Memcomb.Controllers
             {
                 Host = "smtp.gmail.com",
                 Port = 587,
-                EnableSsl = true,
+                //EnableSsl = true,
                 Timeout = 20000,
                 DeliveryMethod = SmtpDeliveryMethod.Network,
                 UseDefaultCredentials = false,
