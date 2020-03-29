@@ -1,0 +1,3 @@
+IPADDRESS: ftp://34.73.153.47 
+USERNAME: test
+PASSWORD: Qwerty1234!

@@ -1,0 +1,18 @@
+smtp error
+https://social.technet.microsoft.com/Forums/ie/en-US/aea21122-d5d5-4c7b-95d5-43aabb72b9dd/the-smtp-server-requires-a-secure-connection-or-the-client-was-not-authenticated-the-server?forum=exchange2010
+ https://g.co/allowaccess 
+
+
+change icon
+https://findnerd.com/list/view/How-to-set-favicon-in-Asp-net-mvc/21886/
+document changed: _Layout.cshtml
+line 6+7 changing icon and title of site
+
+
+
+startup page
+https://forums.asp.net/t/2032462.aspx?How+to+set+startup+page+with+area+in+asp+net+MVC+4+
+
+https://stackoverflow.com/questions/20367826/how-to-set-start-page-in-webconfig-file-in-asp-net-c-sharp
+
+line 19 of file /app_start/RouteConfig.cs

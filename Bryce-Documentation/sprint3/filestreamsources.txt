@@ -1,0 +1,7 @@
+https://docs.microsoft.com/en-us/sql/relational-databases/blob/enable-and-configure-filestream?view=sql-server-ver15
+
+https://codingsight.com/storing-files-in-sql-database-using-filestream-part1/
+
+https://codingsight.com/storing-files-in-sql-database-using-filestream-part1/
+
+https://docs.microsoft.com/en-us/sql/relational-databases/import-export/import-bulk-data-by-using-bulk-insert-or-openrowset-bulk-sql-server?redirectedfrom=MSDN&view=sql-server-ver15
