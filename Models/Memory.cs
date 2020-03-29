@@ -11,13 +11,17 @@ namespace Memcomb.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.Linq;
+
     public partial class Memory
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Memory()
         {
+            this.Comments = new HashSet<Comment>();
             this.Fragments = new HashSet<Fragment>();
+            this.Flags = new HashSet<Flag>();
+            this.Likes = new HashSet<Like>();
         }
     
         public int Memory_ID { get; set; }
@@ -27,7 +31,17 @@ namespace Memcomb.Models
         public string Memory_Description { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Comment> Comments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Fragment> Fragments { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Flag> Flags { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Like> Likes { get; set; }
         public virtual User User { get; set; }
+
+        public List<Fragment> fragmentList { get; set; }
+
+        public Fragment Fragment { get; set; }
     }
 }

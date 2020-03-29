@@ -17,6 +17,7 @@ namespace Memcomb
 				name: "Default",
 				url: "{controller}/{action}/{id}",
 				defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
+				defaults: new { controller = "LoginPage", action = "Index", id = UrlParameter.Optional }
 			);
 			routes.MapRoute(
 				name: "Profile",

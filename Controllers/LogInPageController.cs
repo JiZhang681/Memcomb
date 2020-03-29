@@ -85,6 +85,7 @@ namespace Memcomb.Controllers
                 var v = dc.Users.Where(a => a.Email_ID == login.Email_ID).FirstOrDefault();
                 if (v != null)
                 {
+		   // login.Password = Encrypt.Hash(login.Password); this is problem child
                     if (string.Compare(login.Password, v.Password) == 0)
                     {
                         int timeout = login.RememberMe ? 525600 : 20;

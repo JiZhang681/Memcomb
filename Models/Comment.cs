@@ -21,5 +21,11 @@ namespace Memcomb.Models
         public string Comment1 { get; set; }
     
         public virtual Fragment Fragment { get; set; }
+        public int User_ID { get; set; }
+        public Nullable<System.DateTime> Datetime_Posted { get; set; }
+        public string Comment1 { get; set; }
+        public int Memory_ID { get; set; }
+    
+        public virtual Memory Memory { get; set; }
     }
 }

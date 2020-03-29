@@ -1,11 +1,11 @@
-﻿
+﻿@using Memcomb;
+@model IEnumerable<Memcomb.Models.Memory>
+
 @{
 	ViewBag.Title = "Index";
 }
 
 <link href="@Url.Content("~/Content/HomePage.css")" rel="stylesheet" type="text/css" />
-
-@model Memcomb.Models.HomePageModel
 
 <body class="body">
 	<!-- Trigger/Open The Modal -->
@@ -14,169 +14,100 @@
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
 
-		<!-- Modal content -->
-		<div class="modal-content">
+	<!-- Start of homepage memories -->
+	<div>
 
-			@using (Html.BeginForm("Index", "HomePage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+		@foreach (var item in Model.Reverse())
+		{
+			foreach (var frag in item.fragmentList.Where(a => a.Memory_ID == item.Memory_ID))
 			{
-				@Html.AntiForgeryToken()
-				<div class="col-md-12">
-					<div class="form-horizontal">
-						<div class="form-group col-md-12">
-							@Html.EditorFor(model => model.memory.Memory_Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Memory Title" } })
-							@Html.EditorFor(model => model.memory.Memory_Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Memory Description" } })
-						</div>
-						<div class="form-group col-md-12">
-							<div class="form-inline">
-								<div class="btn btn-primary">
-									<!--<input type="file" id="imageBrowes" />-->
-									@Html.TextBoxFor(model => model.fragment.getImagePath, new { @class = "form-control", type = "file", id = "imageBrowes" })
-								</div>
-								<span>
-									<input type="submit" value="Post Memory!" class="btn" />
-								</span>
-								<span class="close">&times;</span>
-							</div>
-							<div>
-								<input type="button" id="button" onclick="duplicate()" value="Add Another Image" class="btn" />
-							</div>
 
-							<hr />
+				var res = frag.Fragment_Data.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", ""); //Need to set this to work for server
+				var setImage = res.Replace(@"\", "/");
+				var memoryID = frag.Memory_ID;
+
+				<div>
+					<hr />
+
+					<div class="displayMemoryBackground">
+
+						<span id="profileUserID_" class="profilePicAndUserName">
+							<img src="~/Images/memcombLogo.png" id="memoryHighlight" class="profilePic" /> <!-- Will eventually change the profile pic image source -->
+							<span class="userName">User Name</span>
+							<span>
+								Memory Title
+							</span>
+						</span>
+
+						<hr />
+
+						<div>
+							Memory Description
+							@Html.DisplayFor(Model => item.Memory_Description)
 						</div>
-						<div class="form-inline">
-							<div id="duplicator" class="form-group col-md-3">
-								<div id="imgPreview" class="thumbnail" style="display:none">
-									<img id="targetImg" class="img-responsive" />
-									<div class="caption">
-										@Html.EditorFor(model => model.fragment.Fragment_Location, new { htmlAttributes = new { @class = "form-control", id = "memoryLocation", placeholder = "City, State" } })
-										<!--<input type="text" id="memoryLocation" placeholder="City, State" />-->
-										@Html.EditorFor(model => model.fragment.Fragment_Date, new { htmlAttributes = new { @class = "form-control", id = "memoryDate", placeholder = "mm/dd/yyyy" } })
-										<!----<input type="text" id="memoryDate" placeholder="mm/dd/yyyy" />-->
-										<!----<textarea type="text" id="memoryCaption" placeholder="Your Caption" maxlength="300" rows="5" cols="50" class="descriptionInput"></textarea>-->
-										@Html.EditorFor(model => model.fragment.Memory_Description, new { htmlAttributes = new { @class = "form-control", id = "memoryCaption", placeholder = "Caption" } })
-										<br /><span id="highlight">Make this your highlight? @Html.EditorFor(model => model.fragment.Is_Highlight)</span><br />
-										<a href="#" onclick="ClearPreview()"><i class="glyphicon glyphicon-trash"></i></a>
-										<span id="description"></span>
-									</div>
-								</div>
+
+						<!-- Trigger/Open The Modal -->
+						<div class="displayMemoryBtn">
+
+							<button class="displayMemoryBtnBackground" id="memoryID"><img class="memoryHighlight" src="@setImage"></button>
+
+						</div>
+
+
+						<!-- The Modal -->
+						<div id="theMemories" class="modal">
+
+							<!-- Modal content -->
+							<div class="modal-content">
+
+								<span id="viewMemoryClose" class="close">&times;</span>
 							</div>
 						</div>
 					</div>
 				</div>
-			 }
-		</div>
+			}
+		}
+		<hr />
 	</div>
+	<!-- End of homepage memories -->
+
 </body>
 
 <script>
+
 	// Get the modal
-	var modal = document.getElementById("myModal");
+	var theMemoriesModal = document.getElementById("theMemories"); // View Memory Modal
 
 	// Get the button that opens the modal
-	var btn = document.getElementById("myBtn");
+	var viewMemoryBtn = document.getElementById("memoryID"); // View Memory Modal
 
 	// Get the <span> element that closes the modal
-	var span = document.getElementsByClassName("close")[0];
+	var theMemoriesModalClose = document.getElementById("viewMemoryClose");
 
 	// When the user clicks the button, open the modal
-	btn.onclick = function () {
-		modal.style.display = "block";
+	viewMemoryBtn.onclick = function () {
+		theMemoriesModal.style.display = "block";
 	}
 
-	// When the user clicks on <span> (x), close the modal
-	span.onclick = function () {
-		modal.style.display = "none";
+	// When the  user clicks on <span> (x), close the modal
+	theMemoriesModalClose.onclick = function () {
+		theMemoriesModal.style.display = "none";
 	}
 
 	// When the user clicks anywhere outside of the modal, close it
 	window.onclick = function (event) {
-		if (event.target == modal) {
-			modal.style.display = "none";
+		if (event.target == theMemoriesModal) {
+			theMemoriesModal.style.display = "none";
 		}
 	}
+
 </script>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-<script>
-
-	var i = 0;
-
-	$(document).ready(function () {
-		$("#imageBrowes").change(function () {
-			var File = this.files;
-
-			if (File && File[0]) {
-				ReadImage(File[0]);
-			}
-
-		})
-	})
-
-	var ReadImage = function (file) {
-
-		var reader = new FileReader;
-		var image = new Image;
-
-		reader.readAsDataURL(file);
-		reader.onload = function (_file) {
-
-			image.src = _file.target.result;
-			image.onload = function () {
-
-				var height = this.height;
-				var width = this.width;
-				var type = file.type;
-				var size = ~~(file.size / 1024) + "KB";
-
-				$("#targetImg").attr('src', _file.target.result);
-				$("#description").text("Size:" + size + ", " + height + "X" + width + " " + type + "");
-				$("#imgPreview").show();
-			}
-		}
-	}
-
-	$(document).ready(function () {
-		$("#saveToDB").click(function () {
-			$.ajax(
-				{
-					type: "POST", //HTTP POST Method
-					url: "HomePage/Index", // Controller/View
-					data: { //Passing data
-						Fragment_Data: $("#targetImg" + i).val(), //Reading text box values using Jquery
-						Fragment_Date: $("#memoryDate" + i).val(),
-						Memory_Description: $("#memoryCaption" + i).val(),
-						Fragment_Location: $("#memoryLocation" + i).val(),
-						Is_Highlight: $("#highlight" + i).val()
-
-					}
-
-				});
-		});
-	});
-
-	var divDuplicator = document.getElementById('duplicator');
-
-	function duplicate() {
-		var clone = divDuplicator.cloneNode(true); // "deep" clone
-		clone.id = "targetImg" + ++i;
-		// or clone.id = ""; if the divs don't need an ID
-		divDuplicator.parentNode.appendChild(clone);
-	}
-
-	var ClearPreview = function () {
-		$("#imageBrowes").val("");
-		//$("#description" + i).text("");
-		//$("#imgPreview" + i).hide();
-
-		$(document).on("click", "#targetImg" + i, function () {
-			$(this).remove();
-		})
-
-		i = i - 1;
-	}
-
-</script>
+<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
 	<div class="container">
@@ -195,6 +126,9 @@
 				<li>@Html.ActionLink("Messages", "Index", "HomePage")</li>
 				<li>@Html.ActionLink("Profile", "Index", "Profile")</li>
 				<li>@Html.ActionLink("Settings", "Index", "Settings")</li>
+				<li>
+					@{Html.RenderPartial("_CreateMemory", new Memcomb.Models.Memory());}
+				</li>
 			</ul>
 		</div>
 	</div>

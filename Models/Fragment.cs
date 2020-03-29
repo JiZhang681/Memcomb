@@ -15,8 +15,15 @@ namespace Memcomb.Models
     using System.Collections.Generic;
     using System.Web;
     
+    using System.Linq;
     public partial class Fragment
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Fragment()
+        {
+            this.Connections = new HashSet<Connection>();
+        }
+    
         public int Fragment_ID { get; set; }
         public int Memory_ID { get; set; }
         public Nullable<System.DateTime> Date_Posted { get; set; }
@@ -27,6 +34,10 @@ namespace Memcomb.Models
         public bool Is_Highlight { get; set; }
     
           public HttpPostedFileBase getImagePath { get; set; }
+        public HttpPostedFileBase getImagePath { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Connection> Connections { get; set; }
         public virtual Memory Memory { get; set; }
     }
 }

@@ -25,9 +25,16 @@ namespace Memcomb.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<Comment> Comments { get; set; }
+        public virtual DbSet<Connection> Connections { get; set; }
+        public virtual DbSet<Convo> Convoes { get; set; }
         public virtual DbSet<Following> Followings { get; set; }
         public virtual DbSet<Fragment> Fragments { get; set; }
         public virtual DbSet<Memory> Memories { get; set; }
+        public virtual DbSet<Message> Messages { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<Blocking> Blockings { get; set; }
+        public virtual DbSet<Flag> Flags { get; set; }
+        public virtual DbSet<Like> Likes { get; set; }
     }
 }

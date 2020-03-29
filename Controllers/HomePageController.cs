@@ -12,7 +12,7 @@ using System.Web.Mvc;
 using System.Net.Mail;
 using Memcomb.Models;
 using System.Web.Security;
-
+using System.Windows;
 
 namespace Memcomb.Controllers
 {
@@ -22,18 +22,51 @@ namespace Memcomb.Controllers
         // GET: HomePage
         public ActionResult Index()
         {
-            return View();
-        }
+            memcombdbEntities db = new memcombdbEntities();
 
+            List<Memory> memoryList = new List<Memory>();
+            List<Fragment> fragmentList = new List<Fragment>();
+
+            //var fragment = from Fragments in db.Fragments select Fragments;
+
+            foreach (var item in db.Memories)
+            {
+                Memory mem = db.Memories.Find(item.Memory_ID);
+                
+                var v = db.Fragments.Where(a => a.Memory_ID == item.Memory_ID);
+                foreach (var s in v)  
+                {   
+                    fragmentList.Add(new Fragment
+                    {
+                        Memory_ID = s.Memory_ID,
+                        Fragment_ID = s.Fragment_ID,
+                        Fragment_Date = s.Fragment_Date,
+                        Fragment_Data = s.Fragment_Data,
+                        Fragment_Location = s.Fragment_Location
+                    });
+                }
+                memoryList.Add(new Memory
+                {
+                    Memory_ID = mem.Memory_ID,
+                    Memory_Title = mem.Memory_Title,
+                    Memory_Description = mem.Memory_Description,
+                    fragmentList = fragmentList
+                });
+            }   
+            return View(memoryList);
+
+        }
+        
         //Registration POST action
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Index(/*[Bind(Exclude = "IsEmailVerified,ActivationCode")]*/ HomePageModel model)
+        public ActionResult Index(/*[Bind(Exclude = "IsEmailVerified,ActivationCode")]*/ Memory model)
         {
             bool Status = false;
             string message = "";
             //
             // Model Validation
+
             if (ModelState.IsValid)
             {
                 #region Save to database
@@ -54,13 +87,13 @@ namespace Memcomb.Controllers
                         Memory newMemory = new Memory()
                         {
                             User_ID = v.User_ID,
-                            Memory_Title = model.memory.Memory_Title,
-                            Memory_Description = model.memory.Memory_Description
+                            Memory_Title = model.Memory_Title,
+                            Memory_Description = model.Memory_Description
                         };
-
+                        
                         Directory.CreateDirectory(Server.MapPath("~/Memories/User_ID_" + v.User_ID + "/Memory_ID_" + memoryIDForFolder));
                         
-                        HttpPostedFileBase file = model.fragment.getImagePath;
+                        HttpPostedFileBase file = model.Fragment.getImagePath;
                         
                         if (file.ContentLength > 0)
                         {
@@ -68,11 +101,11 @@ namespace Memcomb.Controllers
                             var path = Path.Combine(Server.MapPath("~/Memories/User_ID_" + v.User_ID + "/Memory_ID_" + memoryIDForFolder), fragmentIDPath + "_" + fileName );
                             file.SaveAs(path);
                        
-                            model.fragment.Fragment_Data = path;
+                            model.Fragment.Fragment_Data = path;
                         }
 
                         dc.Memories.Add(newMemory);
-                        dc.Fragments.Add(model.fragment);
+                        dc.Fragments.Add(model.Fragment);
                         dc.SaveChanges();
                         Status = true;  
                     }
@@ -84,11 +117,10 @@ namespace Memcomb.Controllers
                 message = "Invalid request";
             }
 
+
             ViewBag.Message = message;
             ViewBag.Status = Status;
-            return View(model);
-
-        }
+            return RedirectToAction("Index");
 
         public ActionResult CreateMemory()
         {
