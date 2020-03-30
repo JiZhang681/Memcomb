@@ -16,3 +16,6 @@ https://forums.asp.net/t/2032462.aspx?How+to+set+startup+page+with+area+in+asp+n
 https://stackoverflow.com/questions/20367826/how-to-set-start-page-in-webconfig-file-in-asp-net-c-sharp
 
 line 19 of file /app_start/RouteConfig.cs
+
+SSL
+https://www.thesslstore.com/knowledgebase/ssl-install/microsoft-iis-7-ssl-installation/
