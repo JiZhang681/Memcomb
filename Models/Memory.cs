@@ -11,6 +11,7 @@ namespace Memcomb.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Linq;
     
     public partial class Memory
     {
@@ -38,6 +39,7 @@ namespace Memcomb.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Like> Likes { get; set; }
         public virtual User User { get; set; }
+
 
         public List<Fragment> fragmentList { get; set; }
 
