@@ -1,5 +1,5 @@
 ﻿@using Memcomb;
-@model IEnumerable<Memcomb.Models.User>
+@model IEnumerable<Memcomb.Models.Memory>
 
 @{
 	ViewBag.Title = "Index";
@@ -11,10 +11,7 @@
 
 	<!-- Start of homepage memories -->
 	<div>
-
-		@foreach (var user in Model.Reverse())
-		{
-			foreach (var mem in user.memoryList.Where(a => a.User_ID == user.User_ID))
+			@foreach (var mem in Model.Reverse())
 			{
 				foreach (var frag in mem.fragmentList.Where(a => a.Memory_ID == mem.Memory_ID))
 				{
@@ -30,8 +27,8 @@
 							<span id="profileUserID_" class="profilePicAndUserName">
 								<img src="~/Images/memcombLogo.png" id="memoryHighlight" class="profilePic" /> <!-- Will eventually change the profile pic image source -->
 								<span class="userName">
-									@Html.DisplayFor(Model => user.First_Name)
-									@Html.DisplayFor(Model => user.Last_Name)
+									@Html.DisplayFor(Model => mem.getFirstName)
+									@Html.DisplayFor(Model => mem.getLastName)
 								</span>
 							</span>
 							<div class="memoryTitle">
@@ -86,7 +83,7 @@
 								<div id="myImgModal_@setImage" class="ImgModal">
 
 									<!-- Modal Content (The Image) -->
-									<img class="ImgModal-content" id="img01">
+									<img class="ImgModal-content" id="img_@setImage">
 
 									<!-- The Close Button -->
 									<span onclick="imgModalClose()" class="close">&times;</span>
@@ -140,10 +137,11 @@
 	var imgModal;
 
 	// Get the image and insert it inside the modal - use its "alt" text as a caption
-	var modalImg = document.getElementById("img01");
+	var modalImg;
 
 	function expandImg(img) {
 		imgModal = document.getElementById("myImgModal_" + img);
+		modalImg = document.getElementById("img_" + img);
 		imgModal.style.display = "block";
 		modalImg.src = img;
 		
@@ -152,6 +150,7 @@
 	// When the user clicks on <span> (x), close the modal
 	function imgModalClose() {
 		imgModal.style.display = "none";
+		modalImg.src = null;
 	}
 
 	// End modal for img expand
