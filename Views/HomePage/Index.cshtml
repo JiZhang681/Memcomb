@@ -14,61 +14,61 @@
 	<!-- The Modal -->
 	<div id="myModal" class="modal">
 
-	<!-- Start of homepage memories -->
-	<div>
+		<!-- Start of homepage memories -->
+		<div>
 
-		@foreach (var item in Model.Reverse())
-		{
-			foreach (var frag in item.fragmentList.Where(a => a.Memory_ID == item.Memory_ID))
+			@foreach (var item in Model.Reverse())
 			{
+				foreach (var frag in item.fragmentList.Where(a => a.Memory_ID == item.Memory_ID))
+				{
 
-				var res = frag.Fragment_Data.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", ""); //Need to set this to work for server
-				var setImage = res.Replace(@"\", "/");
-				var memoryID = frag.Memory_ID;
+					var res = frag.Fragment_Data.Replace(@"C:\Users\andre\Documents\GitHub\Memcomb", ""); //Need to set this to work for server
+					var setImage = res.Replace(@"\", "/");
+					var memoryID = frag.Memory_ID;
 
-				<div>
-					<hr />
-
-					<div class="displayMemoryBackground">
-
-						<span id="profileUserID_" class="profilePicAndUserName">
-							<img src="~/Images/memcombLogo.png" id="memoryHighlight" class="profilePic" /> <!-- Will eventually change the profile pic image source -->
-							<span class="userName">User Name</span>
-							<span>
-								Memory Title
-							</span>
-						</span>
-
+					<div>
 						<hr />
 
-						<div>
-							Memory Description
-							@Html.DisplayFor(Model => item.Memory_Description)
-						</div>
+						<div class="displayMemoryBackground">
 
-						<!-- Trigger/Open The Modal -->
-						<div class="displayMemoryBtn">
+							<span id="profileUserID_" class="profilePicAndUserName">
+								<img src="~/Images/memcombLogo.png" id="memoryHighlight" class="profilePic" /> <!-- Will eventually change the profile pic image source -->
+								<span class="userName">User Name</span>
+								<span>
+									Memory Title
+								</span>
+							</span>
 
-							<button class="displayMemoryBtnBackground" id="memoryID"><img class="memoryHighlight" src="@setImage"></button>
+							<hr />
 
-						</div>
+							<div>
+								Memory Description
+								@Html.DisplayFor(Model => item.Memory_Description)
+							</div>
+
+							<!-- Trigger/Open The Modal -->
+							<div class="displayMemoryBtn">
+
+								<button class="displayMemoryBtnBackground" id="memoryID"><img class="memoryHighlight" src="@setImage"></button>
+
+							</div>
 
 
-						<!-- The Modal -->
-						<div id="theMemories" class="modal">
+							<!-- The Modal -->
+							<div id="theMemories" class="modal">
 
-							<!-- Modal content -->
-							<div class="modal-content">
+								<!-- Modal content -->
+								<div class="modal-content">
 
-								<span id="viewMemoryClose" class="close">&times;</span>
+									<span id="viewMemoryClose" class="close">&times;</span>
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
+				}
 			}
-		}
-		<hr />
-	</div>
+			<hr />
+		</div>
 	<!-- End of homepage memories -->
 
 </body>

@@ -32,8 +32,6 @@ namespace Memcomb.Models
         public string Memory_Description { get; set; }
         public string Fragment_Data { get; set; }
         public bool Is_Highlight { get; set; }
-    
-          public HttpPostedFileBase getImagePath { get; set; }
         public HttpPostedFileBase getImagePath { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

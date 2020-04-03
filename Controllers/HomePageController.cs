@@ -32,10 +32,10 @@ namespace Memcomb.Controllers
             foreach (var item in db.Memories)
             {
                 Memory mem = db.Memories.Find(item.Memory_ID);
-                
+
                 var v = db.Fragments.Where(a => a.Memory_ID == item.Memory_ID);
-                foreach (var s in v)  
-                {   
+                foreach (var s in v)
+                {
                     fragmentList.Add(new Fragment
                     {
                         Memory_ID = s.Memory_ID,
@@ -52,11 +52,11 @@ namespace Memcomb.Controllers
                     Memory_Description = mem.Memory_Description,
                     fragmentList = fragmentList
                 });
-            }   
+            }
             return View(memoryList);
 
         }
-        
+
         //Registration POST action
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -72,7 +72,7 @@ namespace Memcomb.Controllers
                 #region Save to database
                 using (memcombdbEntities dc = new memcombdbEntities())
                 {
-                     
+
                     if (HttpContext.Request.Cookies["userIDCookie"] != null)
                     {
                         HttpCookie cookie = HttpContext.Request.Cookies.Get("userIDCookie");
@@ -90,24 +90,24 @@ namespace Memcomb.Controllers
                             Memory_Title = model.Memory_Title,
                             Memory_Description = model.Memory_Description
                         };
-                        
+
                         Directory.CreateDirectory(Server.MapPath("~/Memories/User_ID_" + v.User_ID + "/Memory_ID_" + memoryIDForFolder));
-                        
+
                         HttpPostedFileBase file = model.Fragment.getImagePath;
-                        
+
                         if (file.ContentLength > 0)
                         {
                             var fileName = Path.GetFileName(file.FileName);
-                            var path = Path.Combine(Server.MapPath("~/Memories/User_ID_" + v.User_ID + "/Memory_ID_" + memoryIDForFolder), fragmentIDPath + "_" + fileName );
+                            var path = Path.Combine(Server.MapPath("~/Memories/User_ID_" + v.User_ID + "/Memory_ID_" + memoryIDForFolder), fragmentIDPath + "_" + fileName);
                             file.SaveAs(path);
-                       
+
                             model.Fragment.Fragment_Data = path;
                         }
 
                         dc.Memories.Add(newMemory);
                         dc.Fragments.Add(model.Fragment);
                         dc.SaveChanges();
-                        Status = true;  
+                        Status = true;
                     }
                 }
                 #endregion
@@ -121,7 +121,7 @@ namespace Memcomb.Controllers
             ViewBag.Message = message;
             ViewBag.Status = Status;
             return RedirectToAction("Index");
-
+        }
         public ActionResult CreateMemory()
         {
             var co_val = Response.Cookies["email"].Value;
