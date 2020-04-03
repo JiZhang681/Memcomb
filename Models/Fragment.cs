@@ -7,15 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
-
 namespace Memcomb.Models
 {
     using System;
     using System.Collections.Generic;
     using System.Web;
-    
-    using System.Linq;
+
     public partial class Fragment
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -32,10 +29,11 @@ namespace Memcomb.Models
         public string Memory_Description { get; set; }
         public string Fragment_Data { get; set; }
         public bool Is_Highlight { get; set; }
-        public HttpPostedFileBase getImagePath { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Connection> Connections { get; set; }
         public virtual Memory Memory { get; set; }
+
+        public HttpPostedFileBase getImagePath { get; set; }
     }
 }

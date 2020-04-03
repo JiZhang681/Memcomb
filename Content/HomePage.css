@@ -18,19 +18,132 @@
 	margin: 0;
 }
 
+/* Begin Create Memory Btn */
 .createMemoryBtn {
+	margin-left: 500px;
 	font-weight: bold;
 	color: #000000;
-	width: 10%;
+	width: 100px;
 	padding: 12px 20px;
-	margin: 8px 0;
 	display: inline-block;
 	background-color: #F9E779;
 	border: 1px solid #F9E779;
 	border-radius: 4px;
 	box-sizing: border-box;
 }
+/* Begin Create Memory Btn Modal */
 
+.postMemoryBtn {
+	height: 50px;
+	background-color: #F9E779;
+	font-weight: bold;
+	color: rgba(113,18,3,1);
+	border: 2px solid rgba(113,18,3,1);
+}
+
+.chooseImgBtn {
+	height: 50px;
+	background-color: #F9E779;
+	font-weight: bold;
+	color: rgba(113,18,3,1);
+	border: 2px solid rgba(113,18,3,1);
+}
+
+.blockForMemoryChooseImgAndPost{
+	margin-left: 10px
+}
+
+.blockForMemoryTitleAndDesc {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	text-align: center;
+	width: 100%;
+	background-color: #F9E779;
+	font-weight: bold;
+	font-size: 15px;
+	border-radius: 8px;
+	color: rgba(113,18,3,1);
+}
+
+/* Begin of Image Preview */
+
+.imgPreview{
+	width: 300px
+}
+
+.imgPreviewBlock {
+	width: 320px;
+	padding: 10px;
+	background-color: #F9E779;
+	border: 10px solid rgba(113,18,3,1);
+	border-radius: 8px;
+	font-weight:bold;
+}
+
+.previewFragmentImg {
+	width: 300px;
+	background-color: rgba(113,18,3,1);
+	border-radius: 8px;
+}
+
+.imgPreviewDescription {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	text-align: center;
+	width: 100%;
+	background-color: #F9E779;
+	font-weight: bold;
+	font-size: 15px;
+	border-radius: 8px;
+}
+
+/* End of Image Preview */
+
+/* The Modal (background) */
+.createMemoryModal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.createMemoryModal-content {
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	background-color: #F9E779;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+	height: 80%;
+	border-radius: 25px;
+	overflow-y:auto;
+}
+
+/* The Close Button */
+.createMemoryClose {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+/* End Create Memory Btn Modal*/
+/* End Create Memory Btn */
+
+/* Begin Display Memory */
 .displayMemoryBackground {
 	border-radius: 25px;
 	width: 100%;
@@ -42,19 +155,35 @@
 	display: flex;
 	justify-content: left;
 	margin-left: 20px;
+	margin-top: 5px;
 }
 
 .profilePic {
-	width: 30px;
-	height: 30px;
+	width: 40px;
+	height: 40px;
 }
 
 .userName{
 	font-weight: bold;
+	font-size: 20px;
 	margin-top: 5px;
 	margin-left: 10px;
 }
 
+.memoryTitle {
+	text-align: center;
+	justify-content: center;
+	font-weight: bold;
+	font-size: 20px;
+	margin-top: 5px;
+}
+
+.memoryDescription {
+	font-weight: normal;
+	font-size: 15px;
+}
+
+/* Begin Display Memory Modal Btn */
 .displayMemoryBtn {
 	display: flex;
 	justify-content: left;
@@ -65,8 +194,8 @@
 	height: 430px;
 	clip-path: circle(210px); /* This is what makes the picture a circular shape, it is a radius */
 	background-color: rgba(113,18,3,1);
-	/*margin: 8px 0;*/
 	margin-left: 20px;
+	margin-bottom: 10px;
 	
 }
 
@@ -77,6 +206,84 @@
 	clip-path: circle(200px);
 	overflow: hidden;
 }
+
+/* Begin Display Memory Modal Content */
+
+.fragmentBlock {
+	width: 340px;
+	padding: 10px;
+	background-color: rgba(113,18,3,1);
+	border-radius: 8px;
+}
+
+.fragmentImg {
+	width: 300px;
+	background-color: rgba(113,18,3,1);
+	border-radius: 8px;
+}
+
+.fragmentDescription {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 10px;
+	text-align: center;
+	width: 100%;
+	background-color: #F9E779;
+	font-weight: bold;
+	font-size: 15px;
+	border-radius: 8px;
+}
+
+.showFullImg {
+	background-color: rgba(113,18,3,1);
+	border: rgba(113,18,3,1);
+}
+
+/* The Modal (background) */
+.displayMemoryModal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.displayMemoryModal-content {
+	text-align: center;
+	background-color: #F9E779;
+	margin: auto;
+	padding: 20px;
+	border: 1px solid #888;
+	width: 80%;
+	height: 80%;
+	border-radius: 25px;
+	overflow-y:auto;
+}
+
+/* The Close Button */
+.displayMemoryClose {
+	color: #aaaaaa;
+	float: right;
+	font-size: 28px;
+	font-weight: bold;
+}
+
+/* End Display Memory Modal Content */
+
+/* End Display Memory Modal Btn */
+.hrColor {
+	border-color: rgba(113,18,3,1);
+}
+
+/* End Display Memory */
 
 /*
 .form-control {
@@ -148,6 +355,80 @@
 	font-size: 28px;
 	font-weight: bold;
 }
+
+
+/* Begin Expand Img */
+
+/* Style the Image Used to Trigger the Modal */
+.expandThisImg {
+	border-radius: 5px;
+	cursor: pointer;
+	transition: 0.3s;
+}
+
+.expandThisImg:hover {
+	opacity: 0.7;
+}
+
+/* The Modal (background) */
+.ImgModal {
+	display: none; /* Hidden by default */
+	position: fixed; /* Stay in place */
+	z-index: 1; /* Sit on top */
+	padding-top: 100px; /* Location of the box */
+	left: 0;
+	top: 0;
+	width: 100%; /* Full width */
+	height: 100%; /* Full height */
+	overflow: auto; /* Enable scroll if needed */
+	background-color: rgb(0,0,0); /* Fallback color */
+	background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+}
+
+/* Modal Content (Image) */
+.ImgModal-content {
+	margin: auto;
+	display: block;
+	width: 80%;
+	max-width: 700px;
+}
+
+@keyframes zoom {
+	from {
+		transform: scale(0)
+	}
+
+	to {
+		transform: scale(1)
+	}
+}
+
+/* The Close Button */
+.close {
+	position: absolute;
+	top: 80px;
+	right: 90px;
+	color: #f1f1f1;
+	font-size: 40px;
+	font-weight: bold;
+	transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+	color: #bbb;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* 100% Image Width on Smaller Screens */
+@media only screen and (max-width: 700px) {
+	.modal-content {
+		width: 100%;
+	}
+}
+
+/* End Expand Img */
 
 .close:hover,
 .close:focus {

@@ -147,7 +147,6 @@
     <Compile Include="Models\Convo.cs">
       <DependentUpon>memcombDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\CreateMemoryModel.cs" />
     <Compile Include="Models\Flag.cs">
       <DependentUpon>memcombDB.tt</DependentUpon>
     </Compile>
@@ -157,7 +156,6 @@
     <Compile Include="Models\Fragment.cs">
       <DependentUpon>memcombDB.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\HomePageModel.cs" />
     <Compile Include="Models\Like.cs">
       <DependentUpon>memcombDB.tt</DependentUpon>
     </Compile>
@@ -182,6 +180,7 @@
     <Compile Include="Models\Message.cs">
       <DependentUpon>memcombDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProfilePageModel.cs" />
     <Compile Include="Models\User.cs">
       <DependentUpon>memcombDB.tt</DependentUpon>
     </Compile>
@@ -263,6 +262,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Memories\UserID\MemoryID\" />
     <Folder Include="Queries\" />
+    <Folder Include="Users\UserID\BackgroundID\" />
+    <Folder Include="Users\UserID\ProfileID\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

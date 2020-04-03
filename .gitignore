@@ -361,3 +361,5 @@ obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 *.cache
 obj/Debug/DesignTimeResolveAssemblyReferencesInput.cache
 bin/Memcomb.dll.config
+.vs/Memcomb/config/applicationhost.config
+Web.config

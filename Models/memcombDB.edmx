@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="memcombdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="memcombdb.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <!--Errors Found During Generation:
 warning 6002: The table/view 'memcombdb.dbo.Blocking' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Blocking">
@@ -121,6 +121,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
           <Property Name="Is_Verified" Type="bit" Nullable="false" />
           <Property Name="Activation_Code" Type="varchar" MaxLength="16" />
           <Property Name="Is_Admin" Type="bit" Nullable="false" />
+          <Property Name="Background_Pic" Type="varchar" MaxLength="1" />
         </EntityType>
         <Association Name="FK__Blocking__User_B__6477ECF3">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -260,7 +261,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="memcombdbModelStoreContainer">
+        <EntityContainer Name="memcombdbStoreContainer">
           <EntitySet Name="Comments" EntityType="Self.Comments" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Connection" EntityType="Self.Connection" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Convo" EntityType="Self.Convo" Schema="dbo" store:Type="Tables" />
@@ -336,7 +337,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="memcombdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="memcombdb" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Comment">
           <Key>
             <PropertyRef Name="Comment_ID" />
@@ -437,6 +438,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
           <Property Name="Is_Verified" Type="Boolean" Nullable="false" />
           <Property Name="Activation_Code" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="Is_Admin" Type="Boolean" Nullable="false" />
+          <Property Name="Background_Pic" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Connections" Relationship="Self.FK__Connectio__User___70DDC3D8" FromRole="Users" ToRole="Connection" />
           <NavigationProperty Name="Convoes" Relationship="Self.FK__Convo__User_Init__01142BA1" FromRole="Users" ToRole="Convo" />
           <NavigationProperty Name="Followings" Relationship="Self.FK_Following_Users" FromRole="Users" ToRole="Following" />
@@ -670,9 +672,9 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="memcombdbModelStoreContainer" CdmEntityContainer="memcombdbEntities">
+        <EntityContainerMapping StorageEntityContainer="memcombdbStoreContainer" CdmEntityContainer="memcombdbEntities">
           <EntitySetMapping Name="Comments">
-            <EntityTypeMapping TypeName="memcombdbModel.Comment">
+            <EntityTypeMapping TypeName="memcombdb.Comment">
               <MappingFragment StoreEntitySet="Comments">
                 <ScalarProperty Name="Comment_ID" ColumnName="Comment_ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
@@ -683,7 +685,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Connections">
-            <EntityTypeMapping TypeName="memcombdbModel.Connection">
+            <EntityTypeMapping TypeName="memcombdb.Connection">
               <MappingFragment StoreEntitySet="Connection">
                 <ScalarProperty Name="Connection_ID" ColumnName="Connection_ID" />
                 <ScalarProperty Name="Fragment_One_ID" ColumnName="Fragment_One_ID" />
@@ -694,7 +696,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Convoes">
-            <EntityTypeMapping TypeName="memcombdbModel.Convo">
+            <EntityTypeMapping TypeName="memcombdb.Convo">
               <MappingFragment StoreEntitySet="Convo">
                 <ScalarProperty Name="Convo_ID" ColumnName="Convo_ID" />
                 <ScalarProperty Name="User_Initiating_ID" ColumnName="User_Initiating_ID" />
@@ -704,7 +706,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Followings">
-            <EntityTypeMapping TypeName="memcombdbModel.Following">
+            <EntityTypeMapping TypeName="memcombdb.Following">
               <MappingFragment StoreEntitySet="Following">
                 <ScalarProperty Name="User_Following" ColumnName="User_Following" />
                 <ScalarProperty Name="User_Followed" ColumnName="User_Followed" />
@@ -712,7 +714,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Fragments">
-            <EntityTypeMapping TypeName="memcombdbModel.Fragment">
+            <EntityTypeMapping TypeName="memcombdb.Fragment">
               <MappingFragment StoreEntitySet="Fragments">
                 <ScalarProperty Name="Fragment_ID" ColumnName="Fragment_ID" />
                 <ScalarProperty Name="Memory_ID" ColumnName="Memory_ID" />
@@ -726,7 +728,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Memories">
-            <EntityTypeMapping TypeName="memcombdbModel.Memory">
+            <EntityTypeMapping TypeName="memcombdb.Memory">
               <MappingFragment StoreEntitySet="Memories">
                 <ScalarProperty Name="Memory_ID" ColumnName="Memory_ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
@@ -737,7 +739,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Messages">
-            <EntityTypeMapping TypeName="memcombdbModel.Message">
+            <EntityTypeMapping TypeName="memcombdb.Message">
               <MappingFragment StoreEntitySet="Messages">
                 <ScalarProperty Name="Message_ID" ColumnName="Message_ID" />
                 <ScalarProperty Name="Convo_ID" ColumnName="Convo_ID" />
@@ -748,7 +750,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="memcombdbModel.User">
+            <EntityTypeMapping TypeName="memcombdb.User">
               <MappingFragment StoreEntitySet="Users">
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="First_Name" ColumnName="First_Name" />
@@ -762,11 +764,12 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
                 <ScalarProperty Name="Is_Verified" ColumnName="Is_Verified" />
                 <ScalarProperty Name="Activation_Code" ColumnName="Activation_Code" />
                 <ScalarProperty Name="Is_Admin" ColumnName="Is_Admin" />
+                <ScalarProperty Name="Background_Pic" ColumnName="Background_Pic" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Blockings">
-            <EntityTypeMapping TypeName="memcombdbModel.Blocking">
+            <EntityTypeMapping TypeName="memcombdb.Blocking">
               <MappingFragment StoreEntitySet="Blocking">
                 <ScalarProperty Name="User_Doing_Blocking" ColumnName="User_Doing_Blocking" />
                 <ScalarProperty Name="User_Being_Blocked" ColumnName="User_Being_Blocked" />
@@ -774,7 +777,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Flags">
-            <EntityTypeMapping TypeName="memcombdbModel.Flag">
+            <EntityTypeMapping TypeName="memcombdb.Flag">
               <MappingFragment StoreEntitySet="Flags">
                 <ScalarProperty Name="Memory_ID" ColumnName="Memory_ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
@@ -782,7 +785,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Likes">
-            <EntityTypeMapping TypeName="memcombdbModel.Like">
+            <EntityTypeMapping TypeName="memcombdb.Like">
               <MappingFragment StoreEntitySet="Likes">
                 <ScalarProperty Name="Memory_ID" ColumnName="Memory_ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
