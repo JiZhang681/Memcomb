@@ -42,7 +42,7 @@
 }
 
 .chooseImgBtn {
-	height: 50px;
+	height: auto;
 	background-color: #F9E779;
 	font-weight: bold;
 	color: rgba(113,18,3,1);
@@ -74,7 +74,8 @@
 }
 
 .imgPreviewBlock {
-	width: 320px;
+	margin: 20px;
+	width: 350px;
 	padding: 10px;
 	background-color: #F9E779;
 	border: 10px solid rgba(113,18,3,1);
@@ -129,7 +130,7 @@
 	width: 80%;
 	height: 80%;
 	border-radius: 25px;
-	overflow-y:auto;
+	overflow-y: auto;
 }
 
 /* The Close Button */
@@ -210,6 +211,7 @@
 /* Begin Display Memory Modal Content */
 
 .fragmentBlock {
+	margin:5px;
 	width: 340px;
 	padding: 10px;
 	background-color: rgba(113,18,3,1);
@@ -218,8 +220,10 @@
 
 .fragmentImg {
 	width: 300px;
+	clip-path: inset(100px, 0px, 100px, 0px);
 	background-color: rgba(113,18,3,1);
 	border-radius: 8px;
+	overflow: hidden;
 }
 
 .fragmentDescription {

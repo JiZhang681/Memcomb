@@ -1,0 +1,22 @@
+﻿
+@model Memcomb.Models.Memory
+
+@Html.HiddenFor(model => model.User_ID)
+@Html.HiddenFor(model => model.Date_Created)
+<div class="form-group">
+	<div class="form-inline">
+		<div class="blockForMemoryChooseImgAndPost">
+			<span id="createMemoryClose" class="createMemoryClose">&times;</span>
+		</div>
+		<span class="blockForMemoryTitleAndDesc">
+			@Html.EditorFor(model => model.Memory_Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Memory Title" } })
+			<br />
+			@Html.EditorFor(model => model.Memory_Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Memory Description" } })
+		</span>
+	</div>
+	<hr />
+
+	<div class="form-inline" id="fragmentsAdder">
+		@Html.EditorFor(model => model.Fragments)
+	</div>
+</div>

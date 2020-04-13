@@ -1,0 +1,140 @@
+﻿
+@model IEnumerable<Memcomb.Models.Fragment>
+
+@foreach(var frag in Model){
+
+	var res = frag.Fragment_Data.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", ""); //Need to set this to work for server
+	var setImage = res.Replace(@"\", "/");
+
+	var memoryID = frag.Memory_ID;
+	var fragID = frag.Fragment_ID;
+
+	if (frag.Is_Highlight == true) {
+		<hr class="hrColor" />
+		<!-- Trigger/Open The Modal -->
+		<div class="displayMemoryBtn">
+			<button class="displayMemoryBtnBackground" id="@memoryID" onClick="viewMemoryBtn(this.id)")">
+				<img class="memoryHighlight" src="@setImage">
+			</button>
+		</div>
+	}
+
+	<!-- The Modal -->
+	<div id="theMemories_@memoryID" class="displayMemoryModal">
+
+		<!-- Modal content -->
+		<div class="displayMemoryModal-content">
+
+			<span id="@memoryID" onClick="theMemoriesModalClose()" class="displayMemoryClose">&times;</span>
+
+			<div class="form-inline">
+
+				@foreach (var display in Model)
+				{
+					var displayRes = display.Fragment_Data.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", ""); //Need to set this to work for server
+					var displayImage = displayRes.Replace(@"\", "/");
+
+					<div class="form-group">
+						<div class="fragmentBlock">
+
+							<button class="showFullImg" onclick="expandImg(this.id)" id="@displayImage">
+								<img class="fragmentImg" src="@displayImage" />
+							</button>
+
+							<div class="fragmentDescription form-group">
+								<div>
+									@Html.DisplayFor(model => display.Fragment_Location)
+								</div>
+								<div>
+									@Html.DisplayFor(model => display.Fragment_Date)
+								</div>
+								<div>
+									@Html.DisplayFor(model => display.Memory_Description)
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- The Modal -->
+					<div id="myImgModal_@displayImage" class="ImgModal">
+
+						<!-- Modal Content (The Image) -->
+						<img class="ImgModal-content" id="img_@displayImage">
+
+						<!-- The Close Button -->
+						<span onclick="imgModalClose()" class="close">&times;</span>
+					</div>
+
+
+				}
+
+			</div>
+			
+		</div>
+		
+	</div>
+}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
+<script>
+
+	// Begin modal for Memories
+
+	// Get the modal
+	var theMemoriesModal;
+	var clicked_id;
+
+	// When the user clicks the button, open the modal
+	function viewMemoryBtn(id) {
+		clicked_id = id;
+		theMemoriesModal = document.getElementById("theMemories_" + clicked_id);
+		theMemoriesModal.style.display = "block";
+	}
+
+	// When the  user clicks on <span> (x), close the modal
+	function theMemoriesModalClose() {
+		theMemoriesModal.style.display = "none";
+	}
+
+	// When the user clicks anywhere outside of the modal, close it
+	window.addEventListener("click", function (event) {
+		if (event.target == theMemoriesModal) {
+			theMemoriesModal.style.display = "none";
+		}
+	});
+
+	// End modal for Memories
+
+	// Begin modal for img expand
+
+	// Get the modal
+	var imgModal;
+
+	// Get the image and insert it inside the modal - use its "alt" text as a caption
+	var modalImg;
+
+	function expandImg(img) {
+		imgModal = document.getElementById("myImgModal_" + img);
+		modalImg = document.getElementById("img_" + img);
+		imgModal.style.display = "block";
+		modalImg.src = img;
+
+	}
+
+	// When the user clicks on <span> (x), close the modal
+	function imgModalClose() {
+		imgModal.style.display = "none";
+		modalImg.src = null;
+	}
+
+	// End modal for img expand
+
+
+</script>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+<script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
+<script src="~/Scripts/jquery-1.10.2.js"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>

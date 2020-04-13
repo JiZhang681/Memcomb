@@ -45,6 +45,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BeginCollectionItem, Version=1.2.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>packages\BeginCollectionItem.1.2.1.0\lib\net35\BeginCollectionItem.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -156,6 +159,7 @@
     <Compile Include="Models\Fragment.cs">
       <DependentUpon>memcombDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\HtmlHelpers.cs" />
     <Compile Include="Models\Like.cs">
       <DependentUpon>memcombDB.tt</DependentUpon>
     </Compile>
@@ -227,6 +231,7 @@
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\backgroundupload.js" />
+    <Content Include="Scripts\CustomJs.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -257,6 +262,9 @@
     <Content Include="Views\SignUpPage\Index.cshtml" />
     <Content Include="Views\Settings\Index.cshtml" />
     <Content Include="Views\HomePage\_CreateMemory.cshtml" />
+    <Content Include="Views\HomePage\EditorTemplates\Memory.cshtml" />
+    <Content Include="Views\HomePage\EditorTemplates\Fragment.cshtml" />
+    <Content Include="Views\HomePage\DisplayTemplates\Fragment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
