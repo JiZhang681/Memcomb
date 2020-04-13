@@ -2,50 +2,48 @@
 @model IEnumerable<Memcomb.Models.Memory>
 
 @{
-	ViewBag.Title = "Index";
+    ViewBag.Title = "Index";
 }
 
 <link href="@Url.Content("~/Content/HomePage.css")" rel="stylesheet" type="text/css" />
 
 <body class="body">
 
-	<!-- Start of homepage memories -->
-	<div>
+    <!-- Start of homepage memories -->
+    <div>
+        @foreach (var mem in Model.Reverse())
+        {
+            var memoryID = mem.Memory_ID;
+            <div>
+                <br /><br />
 
-		@foreach (var mem in Model.Reverse())
-		{
-			var memoryID = mem.Memory_ID;
-			<div>
-				<br /><br />
+                <div class="displayMemoryBackground">
 
-				<div class="displayMemoryBackground">
+                    <span id="profileUserID_" class="profilePicAndUserName">
+                        <img src="~/Images/memcombLogo.png" id="memoryHighlight" class="profilePic" /> <!-- Will eventually change the profile pic image source -->
+                        <span class="userName">
+                            @Html.DisplayFor(Model => mem.getFirstName)
+                            @Html.DisplayFor(Model => mem.getLastName)
+                        </span>
+                    </span>
+                    <div class="memoryTitle">
+                        @Html.DisplayFor(Model => mem.Memory_Title)
+                    </div>
+                    <div class="memoryDescription">
+                        @Html.DisplayFor(Model => mem.Memory_Description)
+                    </div>
+                    <div>
+                        @Html.DisplayFor(Model => mem.Fragments, "Fragment")
+                    </div>
 
-					<span id="profileUserID_" class="profilePicAndUserName">
-						<img src="~/Images/memcombLogo.png" id="memoryHighlight" class="profilePic" /> <!-- Will eventually change the profile pic image source -->
-						<span class="userName">
-							@Html.DisplayFor(Model => mem.getFirstName)
-							@Html.DisplayFor(Model => mem.getLastName)
-						</span>
-					</span>
-					<div class="memoryTitle">
-						@Html.DisplayFor(Model => mem.Memory_Title)
-					</div>
-					<div class="memoryDescription">
-						@Html.DisplayFor(Model => mem.Memory_Description)
-					</div>
->>>>>>> master
-					<div>
-						@Html.DisplayFor(Model => mem.Fragments, "Fragment")
-					</div>
+                </div>
+            </div>
 
-				</div>
-			</div>
-		
-			}
-		<hr />
-	</div>
+        }
+        <hr />
+    </div>
 
-	<!-- End of homepage memories -->
+    <!-- End of homepage memories -->
 
 </body>
 
@@ -54,34 +52,33 @@
 <script src="https://requirejs.org/docs/release/2.3.5/minified/require.js"></script>
 
 <div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			@Html.ActionLink("Memcomb", "Index", "LogInPage", new { area = "" }, new { @class = "navbar-brand" })
-		</div>
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-				<li>@Html.ActionLink("Home", "Index", "HomePage")</li>
-				<li>@Html.ActionLink("Notifications", "About", "HomePage")</li>
-				<li>@Html.ActionLink("Messages", "Index", "HomePage")</li>
-				<li>@Html.ActionLink("Profile", "Index", "Profile")</li>
-				<li>@Html.ActionLink("Settings", "Index", "Settings")</li>
-				<li>
-					@{
-						var memory = new Memcomb.Models.Memory();
-						memory.CreateFragments(1);
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Memcomb", "Index", "LogInPage", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "HomePage")</li>
+                <li>@Html.ActionLink("Notifications", "About", "HomePage")</li>
+                <li>@Html.ActionLink("Messages", "Index", "HomePage")</li>
+                <li>@Html.ActionLink("Profile", "Index", "Profile")</li>
+                <li>@Html.ActionLink("Settings", "Index", "Settings")</li>
+                <li>
+                    @{
+                        var memory = new Memcomb.Models.Memory();
+                        memory.CreateFragments(1);
 
-						Html.RenderPartial("_CreateMemory", memory);
+                        Html.RenderPartial("_CreateMemory", memory);
 
 
-						}
-				</li>
-			</ul>
-		</div>
-	</div>
+                    }
+                </li>
+            </ul>
+        </div>
+    </div>
 </div>
-
