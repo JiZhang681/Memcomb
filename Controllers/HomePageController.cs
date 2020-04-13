@@ -136,7 +136,8 @@ namespace Memcomb.Controllers
                                     Fragment_Date = frag.Fragment_Date,
                                     Fragment_Data = path,
                                     Memory_Description = frag.Memory_Description,
-                                    Fragment_Location = frag.Fragment_Location
+                                    Fragment_Location = frag.Fragment_Location,
+                                    Is_Highlight = frag.Is_Highlight
                                 });
                             }
 
