@@ -121,7 +121,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
           <Property Name="Is_Verified" Type="bit" Nullable="false" />
           <Property Name="Activation_Code" Type="varchar" MaxLength="16" />
           <Property Name="Is_Admin" Type="bit" Nullable="false" />
-          <Property Name="Background_Pic" Type="varchar" MaxLength="1" />
+          <Property Name="Background_Pic" Type="varchar" MaxLength="500" />
         </EntityType>
         <Association Name="FK__Blocking__User_B__6477ECF3">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
@@ -438,7 +438,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
           <Property Name="Is_Verified" Type="Boolean" Nullable="false" />
           <Property Name="Activation_Code" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="Is_Admin" Type="Boolean" Nullable="false" />
-          <Property Name="Background_Pic" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="Background_Pic" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Connections" Relationship="Self.FK__Connectio__User___70DDC3D8" FromRole="Users" ToRole="Connection" />
           <NavigationProperty Name="Convoes" Relationship="Self.FK__Convo__User_Init__01142BA1" FromRole="Users" ToRole="Convo" />
           <NavigationProperty Name="Followings" Relationship="Self.FK_Following_Users" FromRole="Users" ToRole="Following" />

@@ -39,9 +39,7 @@ namespace Memcomb.Models
         public bool Is_Admin { get; set; }
         public string Background_Pic { get; set; }
         public List<Memory> memoryList { get; set; }
-
         public HttpPostedFileBase Profile_Picture_imgPath { get; set; }
-
         public HttpPostedFileBase Background_Photo { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
