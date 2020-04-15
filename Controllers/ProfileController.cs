@@ -27,19 +27,21 @@ namespace Memcomb.Controllers
                         user.Last_Name = u.Last_Name;
                         if (u.Profile_Picture != null)
                         {
-                            user.Profile_Picture = u.Profile_Picture;
+                            var temp = u.Profile_Picture.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", "~");
+                            user.Profile_Picture = temp;
                         }
                         else
                         {
-                            user.Profile_Picture = @"C:\Users\Jzhan\Documents\GitHub\Memcomb\Users\Default\Profile_Pic\rename.jpg";
+                            user.Profile_Picture = @"~\Users\Default\Profile_Pic\rename.jpg";
                         }
                         if (u.Background_Pic != null)
                         {
-                            user.Background_Pic = u.Background_Pic;
+                            var temp = u.Background_Pic.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", "~");
+                            user.Background_Pic = temp;
                         }
                         else
                         {
-                            user.Background_Pic = @"C:\Users\Jzhan\Documents\GitHub\Memcomb\Users\Default\Background_Pic\default.jpg";
+                            user.Background_Pic = @"~\Users\Default\Background_Pic\default.jpg";
                         }
                     }
                 }
@@ -79,11 +81,11 @@ namespace Memcomb.Controllers
                       
                         }
                         dc.Users.Include(v.Profile_Picture);
-                       // try
-                        //{
+                        try
+                        {
                             dc.SaveChanges();
-                        //}
-                        /*catch (DbEntityValidationException ex)
+                        }
+                        catch (DbEntityValidationException ex)
                         {
                             // Retrieve the error messages as a list of strings.
                             var errorMessages = ex.EntityValidationErrors
@@ -98,7 +100,7 @@ namespace Memcomb.Controllers
 
                             // Throw a new DbEntityValidationException with the improved exception message.
                             throw new DbEntityValidationException(exceptionMessage, ex.EntityValidationErrors);
-                        }*/
+                        }
                         Status = true;
                     }
                 }

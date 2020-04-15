@@ -116,7 +116,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
           <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Date_Of_Birth" Type="date" />
           <Property Name="Phone_Number" Type="varchar" MaxLength="10" />
-          <Property Name="Profile_Picture" Type="varchar" MaxLength="100" />
+          <Property Name="Profile_Picture" Type="varchar" MaxLength="500" />
           <Property Name="Biography" Type="varchar" MaxLength="300" />
           <Property Name="Is_Verified" Type="bit" Nullable="false" />
           <Property Name="Activation_Code" Type="varchar" MaxLength="16" />
@@ -433,7 +433,7 @@ warning 6002: The table/view 'memcombdb.dbo.Likes' does not have a primary key d
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Date_Of_Birth" Type="DateTime" Precision="0" />
           <Property Name="Phone_Number" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
-          <Property Name="Profile_Picture" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Profile_Picture" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
           <Property Name="Biography" Type="String" MaxLength="300" FixedLength="false" Unicode="false" />
           <Property Name="Is_Verified" Type="Boolean" Nullable="false" />
           <Property Name="Activation_Code" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />

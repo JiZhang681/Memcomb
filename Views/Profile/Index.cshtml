@@ -2,18 +2,18 @@
     ViewBag.Title = "Profile";
 }
 @model Memcomb.Models.User
-@{	var resprofile = "";
+@{ var resprofile = "";
     var setprofileImage = "";
     var resbackground = "";
     var setbackgroundImage = "";
     if (Html.DisplayNameFor(model => model.Profile_Picture) != null)
     {
-        resprofile = Model.Profile_Picture.Replace(@"C:\inetpub\wwwroot", ""); //Need to set this to work for server
+        resprofile = Model.Profile_Picture.Replace(@"~", ""); //Need to set this to work for server
         setprofileImage = resprofile.Replace(@"\", "/");
     }
     if (Html.DisplayNameFor(model => model.Background_Pic) != null)
     {
-		resbackground = Model.Background_Pic.Replace(@"C:\inetpub\wwwroot", ""); //Need to set this to work for server
+        resbackground = Model.Background_Pic.Replace(@"~", ""); //Need to set this to work for server
         setbackgroundImage = resbackground.Replace(@"\", "/");
     }
 }
@@ -21,124 +21,123 @@
 <head>
 
     <div class="head" style="align-content: center; width: 80%; margin: auto">
-		<div>
-			<div>
-				<img class="background-image" 
-		         src="@setbackgroundImage" style="padding: 6px;" />
-			</div>
-			<br />
-		</div>
-		<div>
-			<div>
+        <div>
+            <div>
+                <img class="background-image"
+                     src="@setbackgroundImage" style="padding: 6px;" />
+            </div>
+            <br />
+        </div>
+        <div>
+            <div>
 
                 <img src="@setprofileImage" style="width:160px; height:160px;
-
                     margin: auto;
                     -moz-border-radius: 60px;
                     border-radius: 100px;
                 padding: 6px;
                     background-color: orangered;
                     box-shadow: 0px 0px 20px #ff6a00;" />
-                
-			</div>
-			<br />
-		</div>
-		<h1>
-		</h1>
-		<div class="spaceBetween">
-			<div>
-				@using (Html.BeginForm("ProfilePicture", "Profile", null, FormMethod.Post, new
-				{
-					enctype = "multipart/form-data"
-				}))
-				{
-					@Html.AntiForgeryToken()
-					<div class="form-group">
-						<div class="form-inline">
-							<div>
-							@Html.TextBoxFor(model => model.Profile_Picture_imgPath, new { @class = "form-control", type = "file", id = "imageBrowes" })
-							</div>
-							<input type="submit" name="uploadProfile" value="Upload Profile" style="color: saddlebrown; background-color: yellow; border-color: saddlebrown"/>
-						</div>
-					</div>
-				}
-			</div>
-			<!--if (ProfilePath != "")
-			{
-				<img src="ProfilePath" />
-			}
-			else
-			{
-				<img src="Url.Content("~/Content/Images/facebookdefaultprofile.jpg")" />
-			}
-			-->
-			<!--<input type="file" onchange="loadImageFile(this)"/>-->
-			<div>
-				@using (Html.BeginForm("BackgroundPicture", "Profile", null, FormMethod.Post, new
-				{
-					enctype = "multipart/form-data"
-				}))
-				{
-					@Html.AntiForgeryToken()
-					<div class="form-group">
-						<div class="form-inline">
-							<div>
-							@Html.TextBoxFor(model => model.Background_Photo, new { @class = "form-control", type = "file", id = "imageBrowes"})
-							</div>
-							<input type="submit" name="uploadBackground" value="Upload Background" style="color: saddlebrown; background-color: yellow; border-color: saddlebrown"/>
-						</div>
-					</div>
-				}
-			</div>
-		</div>
-		<diV>
-			<h1 style="color: yellow; font: bold">@Model.First_Name @Model.Last_Name</h1>
-		</diV>
-		<div>
-			<p>@Html.DisplayTextFor(model => model.Biography)</p>
-		</div>
-	</div>
 
-	<div class="followerRow">
-		<table style="color: darkorange; margin-left: 90px">
-			<tr>
-				<td>
-					| 100 following
-				</td>
-				<td>
-					&nbsp;&nbsp;|&nbsp;&nbsp;
-				</td>
-				<td>
-					100 followers
-				</td>
-				<td>
-					&nbsp;&nbsp;|&nbsp;&nbsp;
-				</td>
-				<td>
-					20 Memories |
-				</td>
-			</tr>
-		</table>
-	</div>
+            </div>
+            <br />
+        </div>
+        <h1>
+        </h1>
+        <div class="spaceBetween">
+            <div>
+                @using (Html.BeginForm("ProfilePicture", "Profile", null, FormMethod.Post, new
+                {
+                    enctype = "multipart/form-data"
+                }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <div class="form-inline">
+                            <div>
+                                @Html.TextBoxFor(model => model.Profile_Picture_imgPath, new { @class = "form-control", type = "file", id = "imageBrowes" })
+                            </div>
+                            <input type="submit" name="uploadProfile" value="Upload Profile" style="color: saddlebrown; background-color: yellow; border-color: saddlebrown" />
+                        </div>
+                    </div>
+                }
+            </div>
+            <!--if (ProfilePath != "")
+            {
+                <img src="ProfilePath" />
+            }
+            else
+            {
+                <img src="Url.Content("~/Content/Images/facebookdefaultprofile.jpg")" />
+            }
+            -->
+            <!--<input type="file" onchange="loadImageFile(this)"/>-->
+            <div>
+                @using (Html.BeginForm("BackgroundPicture", "Profile", null, FormMethod.Post, new
+                {
+                    enctype = "multipart/form-data"
+                }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <div class="form-inline">
+                            <div>
+                                @Html.TextBoxFor(model => model.Background_Photo, new { @class = "form-control", type = "file", id = "imageBrowes" })
+                            </div>
+                            <input type="submit" name="uploadBackground" value="Upload Background" style="color: saddlebrown; background-color: yellow; border-color: saddlebrown" />
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+        <diV>
+            <h1 style="color: yellow; font: bold">@Model.First_Name @Model.Last_Name</h1>
+        </diV>
+        <div>
+            <p>@Html.DisplayTextFor(model => model.Biography)</p>
+        </div>
+    </div>
+
+    <div class="followerRow">
+        <table style="color: darkorange; margin-left: 90px">
+            <tr>
+                <td>
+                    | 100 following
+                </td>
+                <td>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                </td>
+                <td>
+                    100 followers
+                </td>
+                <td>
+                    &nbsp;&nbsp;|&nbsp;&nbsp;
+                </td>
+                <td>
+                    20 Memories |
+                </td>
+            </tr>
+        </table>
+    </div>
 </head>
 <div class="navbar navbar-inverse navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>
-			@Html.ActionLink("Memcomb", "Index", "LogInPage", new { area = "" }, new { @class = "navbar-brand" })
-		</div>
-		<div class="navbar-collapse collapse">
-			<ul class="nav navbar-nav">
-				<li>@Html.ActionLink("Home", "Index", "HomePage")</li>
-				<li>@Html.ActionLink("Notifications", "About", "LogInPage")</li>
-				<li>@Html.ActionLink("Messages", "Index", "LogInPage")</li>
-				<li>@Html.ActionLink("Profile", "Index", "Profile")</li>
-				<li>@Html.ActionLink("Settings", "Index", "Settings")</li>
-			</ul>
-		</div>
-	</div>
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Memcomb", "Index", "LogInPage", new { area = "" }, new { @class = "navbar-brand" })
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home", "Index", "HomePage")</li>
+                <li>@Html.ActionLink("Notifications", "About", "LogInPage")</li>
+                <li>@Html.ActionLink("Messages", "Index", "LogInPage")</li>
+                <li>@Html.ActionLink("Profile", "Index", "Profile")</li>
+                <li>@Html.ActionLink("Settings", "Index", "Settings")</li>
+            </ul>
+        </div>
+    </div>
 </div>

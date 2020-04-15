@@ -4,6 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
+
       <Diagram DiagramId="e104095ef7e34d49adf659f6fde8ed2e" Name="Diagram1">
         <EntityTypeShape EntityType="memcombdbModel.Comment" Width="1.5" PointX="5.25" PointY="11.875" IsExpanded="true" />
         <EntityTypeShape EntityType="memcombdbModel.Connection" Width="1.5" PointX="7.5" PointY="12.75" IsExpanded="true" />
@@ -27,6 +28,7 @@
         <AssociationConnector Association="memcombdbModel.FK__Likes__User_ID__628FA481" ManuallyRouted="false" />
         <AssociationConnector Association="memcombdbModel.FK_Users" ManuallyRouted="false" />
         <AssociationConnector Association="memcombdbModel.FK__Blocking__User_B__6477ECF3" ManuallyRouted="false" />
+
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
