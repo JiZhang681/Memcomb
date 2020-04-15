@@ -27,21 +27,21 @@ namespace Memcomb.Controllers
                         user.Last_Name = u.Last_Name;
                         if (u.Profile_Picture != null)
                         {
-                            var temp = u.Profile_Picture.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", "~");
+                            var temp = u.Profile_Picture.Replace(@"C:\inetpub\wwwroot", "~"); //update for server info
                             user.Profile_Picture = temp;
                         }
                         else
                         {
-                            user.Profile_Picture = @"~\Users\Default\Profile_Pic\rename.jpg";
+                            user.Profile_Picture = @"~\Users\Default\Profile_Pic\rename.jpg"; //update for server info
                         }
                         if (u.Background_Pic != null)
                         {
-                            var temp = u.Background_Pic.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", "~");
+                            var temp = u.Background_Pic.Replace(@"C:\inetpub\wwwroot", "~"); //update for server info
                             user.Background_Pic = temp;
                         }
                         else
                         {
-                            user.Background_Pic = @"~\Users\Default\Background_Pic\default.jpg";
+                            user.Background_Pic = @"~\Users\Default\Background_Pic\default.jpg"; //update for server info
                         }
                     }
                 }
