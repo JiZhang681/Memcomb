@@ -23,8 +23,24 @@ namespace Memcomb.Controllers
                     var v = dc.Users.Where(a => a.Email_ID == cookie.Value);
                     foreach (var u in v)
                     {
-                        user.Profile_Picture = u.Profile_Picture;
-                        user.Background_Pic = u.Background_Pic;
+                        user.First_Name = u.First_Name;
+                        user.Last_Name = u.Last_Name;
+                        if (u.Profile_Picture != null)
+                        {
+                            user.Profile_Picture = u.Profile_Picture;
+                        }
+                        else
+                        {
+                            user.Profile_Picture = @"C:\Users\Jzhan\Documents\GitHub\Memcomb\Users\Default\Profile_Pic\rename.jpg";
+                        }
+                        if (u.Background_Pic != null)
+                        {
+                            user.Background_Pic = u.Background_Pic;
+                        }
+                        else
+                        {
+                            user.Background_Pic = @"C:\Users\Jzhan\Documents\GitHub\Memcomb\Users\Default\Background_Pic\default.jpg";
+                        }
                     }
                 }
             }
