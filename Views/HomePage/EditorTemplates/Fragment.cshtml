@@ -8,32 +8,17 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
 	<div class="fragmenttts form-group">
-			<div class="thumbnail imgPreviewBlock">
-				<div class="btn chooseImgBtn">
+        <div class="thumbnail imgPreviewBlock">
+           
+            @Html.TextBoxFor(model => model.getImagePath, new { @class = "form-control", type = "file", onchange = "document.getElementById('imgPreview').src = window.URL.createObjectURL(this.files[0])" })
 
-					@{ var id = ""; }
-					@Html.TextBoxFor(model => model.getImagePath, new { @class = "form-control", type = "file", onClick="getID(this.id)" , onchange = "document.getElementById('imgPreview_'@id).src = window.URL.createObjectURL(this.files[0])" })
-
-					<img id="imgPreview_" class="img-responsive" />
-
-				</div>
-
-				<div class="caption">
-					@Html.EditorFor(model => model.Fragment_Location, new { htmlAttributes = new { @class = "form-control", id = "memoryLocation", placeholder = "City, State" } })
-					@Html.EditorFor(model => model.Fragment_Date, new { htmlAttributes = new { @class = "form-control", id = "memoryDate", placeholder = "mm/dd/yyyy", value = " " } })
-					@Html.EditorFor(model => model.Memory_Description, new { htmlAttributes = new { @class = "form-control", id = "memoryCaption", placeholder = "Caption" } })
-					<br /><span id="highlight">Make this your highlight? @Html.EditorFor(model => model.Is_Highlight)</span><br />
-					<span class="glyphicon glyphicon-trash"></span>
-					@Html.RemoveLink("Remove", "div.thumbnail", "input.mark-for-delete")
-				</div>
-			</div>
+            <div class="caption">
+                @Html.EditorFor(model => model.Fragment_Location, new { htmlAttributes = new { @class = "form-control", id = "memoryLocation", placeholder = "City, State" } })
+                @Html.EditorFor(model => model.Fragment_Date, new { htmlAttributes = new { @class = "form-control", id = "memoryDate", placeholder = "mm/dd/yyyy", value = " " } })
+                @Html.EditorFor(model => model.Memory_Description, new { htmlAttributes = new { @class = "form-control", id = "memoryCaption", placeholder = "Caption" } })
+                <br /><span id="highlight">Make this your highlight? @Html.EditorFor(model => model.Is_Highlight)</span><br />
+                <span class="glyphicon glyphicon-trash"></span>
+                @Html.RemoveLink("Remove", "div.thumbnail", "input.mark-for-delete")
+            </div>
+        </div>
 	</div>
-
-<script>
-	function getID(input) {
-
-		var set = document.getElementById("imgPreview")
-		set.appendChild(input)
-
-	}
-</script>

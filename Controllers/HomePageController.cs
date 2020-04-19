@@ -42,6 +42,18 @@ namespace Memcomb.Controllers
             {
                 User user = db.Users.Find(u.User_ID);
 
+                var getProFilePic = "";
+
+                if (u.Profile_Picture != null)
+                {
+                    var temp = u.Profile_Picture.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", "");
+                    getProFilePic = temp;
+                }
+                else
+                {
+                    getProFilePic = @"\Users\Default\Profile_Pic\rename.jpg";
+                }
+
                 var m = db.Memories.Where(a => a.User_ID == u.User_ID);
                 foreach (var item in m)
                 {
@@ -67,11 +79,12 @@ namespace Memcomb.Controllers
                         User_ID = mem.User_ID,
                         getFirstName = user.First_Name,
                         getLastName = user.Last_Name,
+                        getProfilePic = getProFilePic,
                         Memory_ID = mem.Memory_ID,
                         Memory_Title = mem.Memory_Title,
                         Memory_Description = mem.Memory_Description,
                         Date_Created = mem.Date_Created,
-                        fragmentList = fragmentList
+                        Fragments = fragmentList
                     });
                 }
 
@@ -86,8 +99,8 @@ namespace Memcomb.Controllers
 
             memoryList = memoryList.OrderBy(e => e.Date_Created).ToList();
 
-            //return View(memoryList); 
-            return View(db.Memories.ToList());
+            return View(memoryList); 
+            //return View(test);
         }
 
         //Registration POST action
@@ -129,6 +142,8 @@ namespace Memcomb.Controllers
 
                         List<Fragment> fragmentList = new List<Fragment>();
 
+                        var checkForHighlight = false;
+
                         foreach (Fragment frag in model.Fragments.ToList())
                         {
                             HttpPostedFileBase file = frag.getImagePath;
@@ -139,6 +154,10 @@ namespace Memcomb.Controllers
                                 var path = Path.Combine(Server.MapPath("~/Memories/User_ID_" + v.User_ID + "/Memory_ID_" + memoryIDForFolder), fragmentIDPath + "_" + fileName);
                                 file.SaveAs(path);
 
+                                if (frag.Is_Highlight == true)
+                                {
+                                    checkForHighlight = true;
+                                }
 
                                 fragmentList.Add(new Fragment
                                 {
@@ -150,6 +169,12 @@ namespace Memcomb.Controllers
                                 });
                             }
 
+                        }
+
+                        if(checkForHighlight == false)
+                        {
+                            var firstElement = fragmentList.First();
+                            firstElement.Is_Highlight = true;
                         }
 
                         dc.Memories.Add(newMemory);

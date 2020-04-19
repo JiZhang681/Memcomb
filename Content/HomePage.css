@@ -66,9 +66,14 @@
 	color: rgba(113,18,3,1);
 }
 
+.setWidthForMemoryTitleAndDesc{
+	width: 200px;
+}
+
 /* Begin of Image Preview */
 
 .imgPreview {
+	margin-top: 10px;
 	width: 300px
 }
 
@@ -181,6 +186,39 @@
 .memoryDescription {
 	font-weight: normal;
 	font-size: 15px;
+}
+
+.commentsBackgroundAreaBorder {
+	width: 400px;
+	height: 400px;
+	margin: 5px;
+	padding: 10px;
+	background-color: rgba(113,18,3,1);
+	border-radius: 8px;
+}
+
+.commentsBackgroundArea {
+	width: 380px;
+	height: 380px;
+	padding: 10px;
+	background-color: #F9E779;
+	border-radius: 8px;
+}
+
+.commentInputField {
+	clear: both;
+	float: left;
+}
+
+.displayComment{
+	margin-top:  5px;
+	float: left;
+	clear:both;
+	height: auto;
+	padding: 2px;
+	background-color: gray;
+	text-align: left;
+
 }
 
 /* Begin Display Memory Modal Btn */
@@ -354,6 +392,7 @@
 .close {
 	color: #aaaaaa;
 	float: right;
+	clear: both;
 	font-size: 28px;
 	font-weight: bold;
 }

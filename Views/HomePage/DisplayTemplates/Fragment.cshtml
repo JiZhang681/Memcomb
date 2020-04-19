@@ -10,7 +10,6 @@
 	var fragID = frag.Fragment_ID;
 
 	if (frag.Is_Highlight == true) {
-		<hr class="hrColor" />
 		<!-- Trigger/Open The Modal -->
 		<div class="displayMemoryBtn">
 			<button class="displayMemoryBtnBackground" id="@memoryID" onClick="viewMemoryBtn(this.id)")">
@@ -25,7 +24,7 @@
 		<!-- Modal content -->
 		<div class="displayMemoryModal-content">
 
-			<span id="@memoryID" onClick="theMemoriesModalClose()" class="displayMemoryClose">&times;</span>
+			<span id="@memoryID" onClick="theMemoriesModalClose()" class="btn displayMemoryClose">&times;</span>
 
 			<div class="form-inline">
 
@@ -58,11 +57,11 @@
 					<!-- The Modal -->
 					<div id="myImgModal_@displayImage" class="ImgModal">
 
+						<!-- The Close Button -->
+						<div onclick="imgModalClose()" class="close btn">Close</div>
+
 						<!-- Modal Content (The Image) -->
 						<img class="ImgModal-content" id="img_@displayImage">
-
-						<!-- The Close Button -->
-						<span onclick="imgModalClose()" class="close">&times;</span>
 					</div>
 
 

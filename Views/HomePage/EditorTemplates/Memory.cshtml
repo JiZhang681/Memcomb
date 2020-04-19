@@ -5,14 +5,14 @@
 @Html.HiddenFor(model => model.Date_Created)
 <div class="form-group">
 	<div class="form-inline">
-		<div class="blockForMemoryChooseImgAndPost">
-			<span id="createMemoryClose" class="createMemoryClose">&times;</span>
-		</div>
 		<span class="blockForMemoryTitleAndDesc">
-			@Html.EditorFor(model => model.Memory_Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Memory Title" } })
+			@Html.EditorFor(model => model.Memory_Title, new { htmlAttributes = new { @class = "form-control", placeholder = "Memory Title", style = "width:440px" } })
 			<br />
-			@Html.EditorFor(model => model.Memory_Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Memory Description" } })
+			@Html.EditorFor(model => model.Memory_Description, new { htmlAttributes = new { @class = "form-control", placeholder = "Memory Description", style = "width:440px" } })
 		</span>
+		<div class="form-group ">
+			<img id="imgPreview" class="img-responsive imgPreview" />
+		</div>
 	</div>
 	<hr />
 

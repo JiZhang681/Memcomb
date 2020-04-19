@@ -11,6 +11,7 @@ namespace Memcomb.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.Drawing;
     using System.Web;
 
     public partial class Fragment
@@ -34,6 +35,8 @@ namespace Memcomb.Models
         public virtual ICollection<Connection> Connections { get; set; }
         public virtual Memory Memory { get; set; }
 
+        public string[] getImage { get; set; }
         public HttpPostedFileBase getImagePath { get; set; }
+
     }
 }

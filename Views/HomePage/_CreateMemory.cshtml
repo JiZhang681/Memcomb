@@ -22,6 +22,10 @@
 			{
 				@Html.AntiForgeryToken()
 
+				<div class="blockForMemoryChooseImgAndPost">
+					<span id="createMemoryClose" class="btn createMemoryClose">&times;</span>
+				</div>
+
 				<div class="btn postMemoryBtn">
 					@Html.AddLink("Add Fragment", "#fragmentsAdder", ".fragmenttts", "Fragments", typeof(Memcomb.Models.Fragment))
 				</div>
