@@ -274,6 +274,9 @@
     <Content Include="Views\HomePage\EditorTemplates\Memory.cshtml" />
     <Content Include="Views\HomePage\EditorTemplates\Fragment.cshtml" />
     <Content Include="Views\HomePage\DisplayTemplates\Fragment.cshtml" />
+    <Content Include="Views\Profile\_post_profile.cshtml" />
+    <Content Include="Views\Profile\_post_background.cshtml" />
+    <Content Include="Views\Profile\_post_bio.cshtml" />
     <Content Include="Views\HomePage\displayPreviewImage.cshtml" />
   </ItemGroup>
   <ItemGroup>

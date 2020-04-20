@@ -1,0 +1,20 @@
+﻿@model Memcomb.Models.User
+<link href="@Url.Content("~/Content/Profile.css")" rel="stylesheet" type="text/css" />
+<body style="margin-top: 20%;">
+    @using (Html.BeginForm("Biography", "Profile", null, FormMethod.Post, new
+    {
+        enctype = "multipart/form-data"
+    }))
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <div class="form-inline">
+                <div>
+                    <h1 style="color: yellow; text-align-last:center">Edit User Biography</h1>
+                    @Html.TextBoxFor(model => model.Biography, new { @class = "form-bio", type = "text" })
+                </div>
+                <input type="submit" value="Update Bio" style="color: white; background-color: yellow; border-color: saddlebrown" />
+            </div>
+        </div>
+    }
+    </body>

@@ -6,7 +6,6 @@ using System.Web.Mvc;
 using System.IO;
 using Memcomb.Models;
 using System.Data.Entity.Validation;
-
 namespace Memcomb.Controllers
 {
     public class ProfileController : Controller
@@ -43,6 +42,11 @@ namespace Memcomb.Controllers
                         {
                             user.Background_Pic = @"~\Users\Default\Background_Pic\default.jpg"; //update for server info
                         }
+                        if (u.Biography != null)
+                        {
+                            user.Biography = u.Biography;
+                        }
+                        user.Memories = u.Memories;
                     }
                 }
             }
@@ -166,6 +170,36 @@ namespace Memcomb.Controllers
             }
             return RedirectToAction("Index");
         }
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Biography(User model)
+        {
+            bool Status = false;
+            string message = "";
+            if (ModelState.IsValid)
+            {
+                using (memcombdbEntities dc = new memcombdbEntities())
+                {
+                    if (HttpContext.Request.Cookies["userIDCookie"] != null)
+                    {
+                        HttpCookie cookie = HttpContext.Request.Cookies.Get("userIDCookie");
+                        var v = dc.Users.Where(a => a.Email_ID == cookie.Value).FirstOrDefault();
+                        if (model.Biography.Length > 0 && model.Biography.Length <= 300)
+                        {
+                            v.Biography = model.Biography;
+                        }
+                        dc.Users.Include(v.Biography);
+                        dc.SaveChanges();
+                    }
+                }
+            }
+            else
+            {
+                message = "Invalid request";
+            }
+           return RedirectToAction("Index");
+        } 
         // GET: Profile/Details/5
         public ActionResult Details(int id)
         {
@@ -236,6 +270,18 @@ namespace Memcomb.Controllers
             {
                 return View();
             }
+        }
+        public ActionResult _post_profile()
+        {
+            return PartialView("~/Views/Profile/_post_profile.cshtml");
+        }
+        public ActionResult _post_background()
+        {
+            return PartialView("~/Views/Profile/_post_background.cshtml");
+        }
+        public ActionResult _post_bio()
+        {
+            return PartialView("~/Views/Profile/_post_bio.cshtml");
         }
     }
 }

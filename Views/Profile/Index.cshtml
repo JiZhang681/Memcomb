@@ -23,101 +23,81 @@
     <div class="head" style="align-content: center; width: 80%; margin: auto">
         <div>
             <div>
-                <img class="background-image"
-                     src="@setbackgroundImage" style="padding: 6px;" />
+                @using (Html.BeginForm("_post_background", "Profile", null, FormMethod.Post, new
+                {
+                    enctype = "multipart/form-data"
+                }))
+                {
+                    @Html.AntiForgeryToken()
+                    <button class="background-image">
+                        <img src="@setbackgroundImage" style="padding: 6px; width: 100%; height: 190px;" />
+                    </button>
+                }
             </div>
             <br />
         </div>
-        <div>
-            <div>
-
-                <img src="@setprofileImage" style="width:160px; height:160px;
-                    margin: auto;
-                    -moz-border-radius: 60px;
-                    border-radius: 100px;
-                padding: 6px;
-                    background-color: orangered;
-                    box-shadow: 0px 0px 20px #ff6a00;" />
-
-            </div>
-            <br />
+        <div style="margin-left: 40%">
+            @using (Html.BeginForm("_post_profile", "Profile", null, FormMethod.Post, new
+            {
+                enctype = "multipart/form-data"
+            }))
+            {
+                @Html.AntiForgeryToken()
+                <div>
+                    <button id="profile_upload" style="width:180px; height:180px;
+							margin: auto;
+							-moz-border-radius: 60px;
+							border-radius: 100px;
+							padding: 6px;
+							background-color: orangered;
+							box-shadow: 0px 0px 20px #ff6a00;">
+                        <img src="@setprofileImage" style="width:160px; height:160px;
+								 -moz-border-radius: 60px;
+								 border-radius: 100px;" />
+                    </button>
+                </div>
+            }
         </div>
+        <br />
         <h1>
         </h1>
-        <div class="spaceBetween">
-            <div>
-                @using (Html.BeginForm("ProfilePicture", "Profile", null, FormMethod.Post, new
-                {
-                    enctype = "multipart/form-data"
-                }))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        <div class="form-inline">
-                            <div>
-                                @Html.TextBoxFor(model => model.Profile_Picture_imgPath, new { @class = "form-control", type = "file", id = "imageBrowes" })
-                            </div>
-                            <input type="submit" name="uploadProfile" value="Upload Profile" style="color: saddlebrown; background-color: yellow; border-color: saddlebrown" />
-                        </div>
-                    </div>
-                }
-            </div>
-            <!--if (ProfilePath != "")
-            {
-                <img src="ProfilePath" />
-            }
-            else
-            {
-                <img src="Url.Content("~/Content/Images/facebookdefaultprofile.jpg")" />
-            }
-            -->
-            <!--<input type="file" onchange="loadImageFile(this)"/>-->
-            <div>
-                @using (Html.BeginForm("BackgroundPicture", "Profile", null, FormMethod.Post, new
-                {
-                    enctype = "multipart/form-data"
-                }))
-                {
-                    @Html.AntiForgeryToken()
-                    <div class="form-group">
-                        <div class="form-inline">
-                            <div>
-                                @Html.TextBoxFor(model => model.Background_Photo, new { @class = "form-control", type = "file", id = "imageBrowes" })
-                            </div>
-                            <input type="submit" name="uploadBackground" value="Upload Background" style="color: saddlebrown; background-color: yellow; border-color: saddlebrown" />
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-        <diV>
-            <h1 style="color: yellow; font: bold">@Model.First_Name @Model.Last_Name</h1>
-        </diV>
         <div>
-            <p>@Html.DisplayTextFor(model => model.Biography)</p>
+            <h1 style="color: yellow; font: bold; text-align-last: center;">
+                @Model.First_Name @Model.Last_Name
+            </h1>
+            <p style="text-align-last: center; color: greenyellow;">@Html.DisplayTextFor(model => model.Biography)</p>
+            <br />
+            <div style="margin-left: 45%; margin-right: 45%;">
+                @using (Html.BeginForm("_post_bio", "Profile", null, FormMethod.Post, new
+                {
+                    enctype = "multipart/form-data"
+                }))
+                {
+                    <button style="color: saddlebrown; background-color: yellow; border-color: saddlebrown">Edit</button>
+                }
+            </div>
         </div>
-    </div>
-
-    <div class="followerRow">
-        <table style="color: darkorange; margin-left: 90px">
-            <tr>
-                <td>
-                    | 100 following
-                </td>
-                <td>
-                    &nbsp;&nbsp;|&nbsp;&nbsp;
-                </td>
-                <td>
-                    100 followers
-                </td>
-                <td>
-                    &nbsp;&nbsp;|&nbsp;&nbsp;
-                </td>
-                <td>
-                    20 Memories |
-                </td>
-            </tr>
-        </table>
+        <div class="followerRow" style="margin-left: 35%; margin-right: 35%;">
+            <table style="color: darkorange;">
+                <tr>
+                    <td>
+                        | 100 following
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        100 followers
+                    </td>
+                    <td>
+                        &nbsp;&nbsp;|&nbsp;&nbsp;
+                    </td>
+                    <td>
+                        20 Memories |
+                    </td>
+                </tr>
+            </table>
+        </div>
     </div>
 </head>
 <div class="navbar navbar-inverse navbar-fixed-top">

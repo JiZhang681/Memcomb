@@ -36,7 +36,7 @@ body {
     height: 200px;
 }
 .background-image{
-    width: 750px;
+    width: 900px;
     height: 200px;
     color: greenyellow;
     align-content: center;
@@ -102,10 +102,16 @@ body {
 .followerRow{
     font-size: 10pt;
     font-weight: bold;
-    text-align: left;
+    text-align: center;
     color:#ffffff;
     width: 100%;
 }
 .form-control{
     background-color: saddlebrown;
+}
+.form-bio{
+    background-color: saddlebrown;
+    height: 200px;
+    align-content: center;
+    width: 100%;
 }

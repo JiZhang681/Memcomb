@@ -1,0 +1,21 @@
+﻿@model Memcomb.Models.User
+<link href="@Url.Content("~/Content/Profile.css")" rel="stylesheet" type="text/css" />
+<body>
+    <div style="margin-top: 20%;">
+        @using (Html.BeginForm("BackgroundPicture", "Profile", null, FormMethod.Post, new
+        {
+            enctype = "multipart/form-data"
+        }))
+        {
+            @Html.AntiForgeryToken()
+            <div class="form-group">
+                <div class="form-inline">
+                    <div>
+                        @Html.TextBoxFor(model => model.Background_Photo, new { @class = "form-control", type = "file", id = "imageBrowes" })
+                    </div>
+                    <input type="submit" name="uploadBackground" value="Upload Background" style="color: saddlebrown; background-color: yellow; border-color: saddlebrown" />
+                </div>
+            </div>
+        }
+    </div>
+</body>

@@ -373,3 +373,5 @@ Memcomb.csproj
 Memcomb.csproj.user
 Users/User_ID_20/Profile_Pic/37153047_1543093035795479_5413491610124025856_n.jpg
 Views/HomePage/Index.cshtml
+.vs/Memcomb/config/applicationhost.config
+bin/Memcomb.dll.config
