@@ -201,9 +201,6 @@
     <Content Include="Content\HomePage.css" />
     <Content Include="Content\Images\facebookdefaultprofile.jpg" />
     <Content Include="Content\Images\honeybee.jpg" />
-    <Content Include="Content\Images\Jcrop.gif" />
-    <Content Include="Content\jquery.Jcrop.css" />
-    <Content Include="Content\jquery.Jcrop.min.css" />
     <Content Include="Content\LoginPage.css" />
     <Content Include="Content\Profile.css" />
     <Content Include="Content\SignUpPage.css" />
