@@ -284,7 +284,8 @@
     <Content Include="Views\Profile\_post_profile.cshtml" />
     <Content Include="Views\Profile\_post_background.cshtml" />
     <Content Include="Views\Profile\_post_bio.cshtml" />
-    <Content Include="Views\HomePage\displayPreviewImage.cshtml" />
+    <Content Include="Views\HomePage\_commentsArea.cshtml" />
+    <Content Include="Views\HomePage\_displayComments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

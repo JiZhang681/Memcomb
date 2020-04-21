@@ -1,0 +1,14 @@
+﻿
+@model Memcomb.Models.Comment
+@using Memcomb.Models
+
+
+@using (Html.BeginForm("Comment", "HomePage", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+	@Html.HiddenFor(model => model.Memory_ID)
+	@Html.EditorFor(Model => Model.Comment1, new { htmlAttributes = new { @class = "form-control", id = "memoryLocation", placeholder = "Your comment" } })
+	<span>
+		<input type="submit" value="Send" class="btn sendCommentBtn" />
+	</span>
+}
+

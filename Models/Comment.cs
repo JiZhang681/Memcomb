@@ -19,7 +19,10 @@ namespace Memcomb.Models
         public Nullable<System.DateTime> Datetime_Posted { get; set; }
         public string Comment1 { get; set; }
         public int Memory_ID { get; set; }
-    
+
+        public string firstName { get; set; }
+        public string lastName { get; set; }
+
         public virtual Memory Memory { get; set; }
     }
 }

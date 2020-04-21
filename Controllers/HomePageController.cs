@@ -36,6 +36,7 @@ namespace Memcomb.Controllers
             List<User> userList = new List<User>();
             List<Memory> memoryList = new List<Memory>();
             List<Fragment> fragmentList = new List<Fragment>();
+            List<Comment> commentList = new List<Comment>();
 
 
             foreach (var u in db.Users)
@@ -74,6 +75,21 @@ namespace Memcomb.Controllers
                             Is_Highlight = s.Is_Highlight
                         });
                     }
+
+                    var x = db.Comments.Where(a => a.Memory_ID == item.Memory_ID);
+
+                    foreach (var com in x)
+                    {
+                        commentList.Add(new Comment
+                        {
+                            Memory_ID = mem.Memory_ID,
+                            Comment1 = com.Comment1,
+                            firstName = user.First_Name,
+                            lastName = user.Last_Name
+                        });
+                    }
+                    
+
                     memoryList.Add(new Memory
                     {
                         User_ID = mem.User_ID,
@@ -84,6 +100,7 @@ namespace Memcomb.Controllers
                         Memory_Title = mem.Memory_Title,
                         Memory_Description = mem.Memory_Description,
                         Date_Created = mem.Date_Created,
+                        Comments = commentList,
                         Fragments = fragmentList
                     });
                 }
@@ -198,6 +215,32 @@ namespace Memcomb.Controllers
             ViewBag.Status = Status;
             return RedirectToAction("Index");
 
+        }
+
+        public ActionResult Comment(Comment comment)
+        {
+            if (ModelState.IsValid)
+            {
+                using (memcombdbEntities db = new memcombdbEntities())
+                {
+                    HttpCookie cookie = HttpContext.Request.Cookies.Get("userIDCookie");
+                    var v = db.Users.Where(a => a.Email_ID == cookie.Value).FirstOrDefault();
+
+                    Comment newComment = new Comment()
+                    {
+                        User_ID = v.User_ID,
+                        Datetime_Posted = DateTime.Now,
+                        Comment1 = comment.Comment1,
+                        Memory_ID = comment.Memory_ID
+                    };
+
+                    db.Comments.Add(newComment);
+                    db.SaveChanges();
+                }
+            }
+
+
+            return RedirectToAction("Index");
         }
 
     }

@@ -24,7 +24,7 @@ namespace Memcomb.Models
         public int Fragment_ID { get; set; }
         public int Memory_ID { get; set; }
         public Nullable<System.DateTime> Date_Posted { get; set; }
-        public System.DateTime Fragment_Date { get; set; }
+        public Nullable<System.DateTime> Fragment_Date { get; set; }
         public string Fragment_Location { get; set; }
         public string Memory_Description { get; set; }
         public string Fragment_Data { get; set; }
@@ -33,6 +33,7 @@ namespace Memcomb.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Connection> Connections { get; set; }
         public virtual Memory Memory { get; set; }
+
         public string[] getImage { get; set; }
         public HttpPostedFileBase getImagePath { get; set; }
     }

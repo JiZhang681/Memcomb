@@ -15,8 +15,11 @@
 		{
 
 			var fragment = mem.Fragments.Where(a => a.Memory_ID == mem.Memory_ID);
+			var comment = mem.Comments.Where(a => a.Memory_ID == mem.Memory_ID);
 			var res = mem.getProfilePic.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", ""); //Need to set this to work for server
 			var setProfilePic = res.Replace(@"\", "/");
+			var memoryID = mem.Memory_ID;
+
 			<div>
 				<br /><br />
 
@@ -44,16 +47,9 @@
 						</div>
 						<div class="form-group">
 							<div class="commentsBackgroundAreaBorder">
-								<div class="commentsBackgroundArea">
-									<input type="text" placeholder="Comment" class="form-control commentInputField" />
-									<div class="displayComment">
-										Dummy comment Dummy comment Dummy comment Dummy comment Dummy comment Dummy comment
-										Dummy comment Dummy comment
-									</div>
-									<div class="displayComment">
-										Dummy comment Dummy comment 
-									</div>
-
+								<div id="@memoryID" class="commentsBackgroundArea">
+									@{Html.RenderPartial("_commentsArea", new Memcomb.Models.Comment{ Memory_ID = memoryID }); }
+									@{Html.RenderPartial("_displayComments", comment); }
 								</div>
 							</div>
 						</div>
@@ -86,8 +82,6 @@
 		<div class="navbar-collapse collapse">
 			<ul class="nav navbar-nav">
 				<li>@Html.ActionLink("Home", "Index", "HomePage")</li>
-				<li>@Html.ActionLink("Notifications", "About", "HomePage")</li>
-				<li>@Html.ActionLink("Messages", "Index", "HomePage")</li>
 				<li>@Html.ActionLink("Profile", "Index", "Profile")</li>
 				<li>@Html.ActionLink("Settings", "Index", "Settings")</li>
 				<li>

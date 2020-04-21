@@ -1,0 +1,13 @@
+﻿
+@model IEnumerable<Memcomb.Models.Comment>
+
+@foreach(var comment in Model.Reverse())
+{
+
+	<div class="displayComment">
+		@Html.DisplayFor(Model => comment.firstName)
+		@Html.DisplayFor(Model => comment.lastName)
+		<br />
+		@Html.DisplayFor(Model => comment.Comment1)
+	</div>
+}
