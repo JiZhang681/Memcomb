@@ -24,7 +24,7 @@ namespace Memcomb.Models
             this.Memories = new HashSet<Memory>();
             this.Blockings = new HashSet<Blocking>();
         }
-    
+
         public int User_ID { get; set; }
         public string First_Name { get; set; }
         public string Last_Name { get; set; }
