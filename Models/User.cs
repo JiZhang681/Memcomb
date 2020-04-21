@@ -38,7 +38,11 @@ namespace Memcomb.Models
         public string Activation_Code { get; set; }
         public bool Is_Admin { get; set; }
         public string Background_Pic { get; set; }
-    
+
+        public List<Memory> memoryList { get; set; }
+        public HttpPostedFileBase Profile_Picture_imgPath { get; set; }
+        public HttpPostedFileBase Background_Photo { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Connection> Connections { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -49,9 +53,5 @@ namespace Memcomb.Models
         public virtual ICollection<Memory> Memories { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Blocking> Blockings { get; set; }
-
-        public List<Memory> memoryList { get; set; }
-        public HttpPostedFileBase Profile_Picture_imgPath { get; set; }
-        public HttpPostedFileBase Background_Photo { get; set; }
     }
 }

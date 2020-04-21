@@ -11,7 +11,6 @@ namespace Memcomb.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.Drawing;
     using System.Web;
 
     public partial class Fragment
@@ -34,9 +33,7 @@ namespace Memcomb.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Connection> Connections { get; set; }
         public virtual Memory Memory { get; set; }
-
         public string[] getImage { get; set; }
         public HttpPostedFileBase getImagePath { get; set; }
-
     }
 }

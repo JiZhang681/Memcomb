@@ -86,7 +86,9 @@ namespace Memcomb.Controllers
                 if (v != null)
                 {
 
-		   login.Password = Encrypt.Hash(login.Password); 
+
+
+		        login.Password = Encrypt.Hash(login.Password); 
 
                     if (string.Compare(login.Password, v.Password) == 0)
                     {

@@ -41,7 +41,12 @@ namespace Memcomb.Models
         public virtual User User { get; set; }
 
         public List<Fragment> fragmentList { get; set; }
+
         public virtual ICollection<Fragment> FragmentsAdder { get; set; }
+        public string getFirstName { get; set; }
+        public string getLastName { get; set; }
+
+        public string getProfilePic { get; set; }
 
         public void CreateFragments(int count = 1)
         {
@@ -50,10 +55,5 @@ namespace Memcomb.Models
                 Fragments.Add(new Fragment());
             }
         }
-        public Fragment Fragment { get; set; }
-        public string getFirstName { get; set; }
-        public string getLastName { get; set; }
-
-        public string getProfilePic { get; set; }
     }
 }
