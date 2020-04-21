@@ -26,7 +26,7 @@ namespace Memcomb.Controllers
                         user.Last_Name = u.Last_Name;
                         if (u.Profile_Picture != null)
                         {
-                            var temp = u.Profile_Picture.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", "~");
+                            var temp = u.Profile_Picture.Replace(@"C:\inetpub\wwwroot", "~");
                             user.Profile_Picture = temp;
                         }
                         else
@@ -35,7 +35,7 @@ namespace Memcomb.Controllers
                         }
                         if (u.Background_Pic != null)
                         {
-                            var temp = u.Background_Pic.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", "~");
+                            var temp = u.Background_Pic.Replace(@"C:\inetpub\wwwroot", "~");
                             user.Background_Pic = temp;
                         }
                         else

@@ -3,7 +3,7 @@
 
 @foreach(var frag in Model){
 
-	var res = frag.Fragment_Data.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", ""); //Need to set this to work for server
+	var res = frag.Fragment_Data.Replace(@"C:\inetpub\wwwroot", ""); //Need to set this to work for server
 	var setImage = res.Replace(@"\", "/");
 
 	var memoryID = frag.Memory_ID;
@@ -30,7 +30,7 @@
 
 				@foreach (var display in Model)
 				{
-					var displayRes = display.Fragment_Data.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", ""); //Need to set this to work for server
+					var displayRes = display.Fragment_Data.Replace(@"C:\inetpub\wwwroot", ""); //Need to set this to work for server
 					var displayImage = displayRes.Replace(@"\", "/");
 
 					<div class="form-group">

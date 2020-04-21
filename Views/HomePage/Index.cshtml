@@ -16,7 +16,7 @@
 
 			var fragment = mem.Fragments.Where(a => a.Memory_ID == mem.Memory_ID);
 			var comment = mem.Comments.Where(a => a.Memory_ID == mem.Memory_ID);
-			var res = mem.getProfilePic.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", ""); //Need to set this to work for server
+			var res = mem.getProfilePic.Replace(@"C:\inetpub\wwwroot", ""); //Need to set this to work for server
 			var setProfilePic = res.Replace(@"\", "/");
 			var memoryID = mem.Memory_ID;
 

@@ -47,7 +47,7 @@ namespace Memcomb.Controllers
 
                 if (u.Profile_Picture != null)
                 {
-                    var temp = u.Profile_Picture.Replace(@"C:\Users\17347\Desktop\Capstone Project\Github\MemcombRepo\Memcomb", "");
+                    var temp = u.Profile_Picture.Replace(@"C:\inetpub\wwwroot", "");
                     getProFilePic = temp;
                 }
                 else
