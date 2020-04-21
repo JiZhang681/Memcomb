@@ -80,12 +80,14 @@ namespace Memcomb.Controllers
 
                     foreach (var com in x)
                     {
+                        var y = db.Users.Find(com.User_ID);
                         commentList.Add(new Comment
                         {
                             Memory_ID = mem.Memory_ID,
                             Comment1 = com.Comment1,
-                            firstName = user.First_Name,
-                            lastName = user.Last_Name
+                            User_ID = com.User_ID,
+                            firstName = y.First_Name,
+                            lastName = y.Last_Name
                         });
                     }
                     
